@@ -249,3 +249,11 @@ h1 {
 }
 
 
+.css-hfsy4x-MuiDivider-root::before, .css-hfsy4x-MuiDivider-root::after{
+  top:0 !important;
+}
+
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 12px 14px !important;
+}

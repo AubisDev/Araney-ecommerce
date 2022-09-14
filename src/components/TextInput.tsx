@@ -16,12 +16,12 @@ export const TextInput = ({label, ...props}: Props) => {
     <Box sx={{ mb:2}}>
       <InputLabel htmlFor={ props.id || props.name }>{ label }</InputLabel>
       <TextField { ...field } { ...props } fullWidth />
-      { meta.error && (
+      {/* { meta.error && meta.touched &&  (
           <Alert severity="error">
             <ErrorMessage name={ props.name } component="span" />
           </Alert>
         )
-      }
+      } */}
       
     </Box>
    

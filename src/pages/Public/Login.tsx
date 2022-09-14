@@ -2,6 +2,7 @@ import { Box, Divider, Button, Typography } from "@mui/material"
 import { Formik, Form } from "formik"
 import * as Yup from 'yup'
 import { TextInput } from "../../components";
+import GoogleIcon from '@mui/icons-material/Google';
 
 const validationSchema = Yup.object({
   email: Yup
@@ -23,7 +24,7 @@ export const Login = () => {
         </Typography>
         <Typography variant='subtitle1' align='center' component='p' sx={{ pb:4, color:"#7a7582"}} >
             Don't have an account? 
-            <Button size="small">Join us</Button>
+            <Button size="medium" color='info' sx={{ ml:1}}>Join us</Button>
         </Typography>
         <Box sx={{
           width: '60%',
@@ -48,6 +49,7 @@ export const Login = () => {
               <TextInput
                 label='Password'
                 name='password'
+                type='password'
               />
 
               <Button color='warning' variant="contained" fullWidth type="submit" >
@@ -56,12 +58,12 @@ export const Login = () => {
             </Form>
           </Formik>
         </Box>
-        <Divider sx={{ py:4}}>
-          OR
-        </Divider>
-        <Typography variant='subtitle1' align='center' component='h3' sx={{ }}>
-           Sign in with google 
-        </Typography>
+        <Divider sx={{ py:3,}}>OR</Divider>
+
+        <Button variant="contained" color='warning' sx={{ width:'60%', margin:"auto"}}>
+          <GoogleIcon color='inherit' sx={{pr:1 }} /> Sign in with google
+        </Button>
+
         
       </Box>
     </Box>
