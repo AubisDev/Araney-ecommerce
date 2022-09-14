@@ -15,7 +15,7 @@ export const CategoriesSection = () => {
             <Grid container direction='row' spacing={5} sx={{ p:3}} >
             {
                 categoriesData.map(({id, categoryName, image, description}:CategoriesData) => (
-                    <Grid key={id} item xs={6}  lg={3} className="category">
+                    <Grid key={id} item xs={6}  lg={4} className="category">
                         <Box className="categoryItem" >
                             <img src={image} alt={categoryName} style={{ objectFit:'cover', width:'100%',height:"500px", position: 'relative'}} />
                             <Typography variant='h4' align='center' component='h4' className='centerElement'>
