@@ -1,4 +1,4 @@
-import { HeroSection } from "./components"
+import { FeaturedProducts, HeroSection } from "./components"
 import CategoriesSection from "./components/CategoriesSection"
 
 export const Home = () => {
@@ -6,6 +6,7 @@ export const Home = () => {
     <>
       <HeroSection />
       <CategoriesSection/>
+      <FeaturedProducts/>
     </>
   )
 }
