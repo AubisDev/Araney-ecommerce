@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Navigate} from 'react-router-dom';
 import store from "../redux/store";
 import { RoutesWithNotFound } from "../utilities";
 import { PublicRoutes, PrivateRoutes } from "../models/routes";
-import Navbar from "../components/Navbar";
+import { Navbar } from "../components/Navbar";
 
 const Login = lazy(() => import('../pages/Public/Login'));
 const Register = lazy(() => import('../pages/Public/Register'));
