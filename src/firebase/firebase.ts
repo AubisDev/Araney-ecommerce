@@ -1,5 +1,5 @@
-import { initializeApp } from "@Firebase/app";
-​​import { getAuth } from "@Firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 
 const firebaseConfig = {
@@ -12,5 +12,4 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const fbAuth = getAuth(app);
-
+export const firebaseAuth = getAuth(app);

@@ -1,21 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { UserInfo } from '../../models/user';
-import { getLocalStorage } from '../../utilities/localstorage';
+import { createSlice, Slice } from '@reduxjs/toolkit';
 
-export const EmptyUserState: UserInfo = {
-    id: 0,
-    name: '',
-    email: '',
+const userInitialValue = {
+    user: null
 }
 
-export const useSlice = createSlice({
+export const userSlice:Slice = createSlice({
     name:'user',
-    initialState: getLocalStorage( 'user', EmptyUserState ),
+    initialState: userInitialValue,
     reducers:{
+        UserLogInWithGoogle: (state, action) => {
+            state.user = action.payload
+        },
 
+        userLogout: ( state ) => {
+            state.user = null;
+        },
+
+        registerUserWithEmailAndPassword: (state, action) => {
+            // const { email, password } = action.payload;
+            // state.user = 
+        }
     }
 });
 
-export const { } = useSlice.actions;
+export const { 
+    UserLogInWithGoogle,
+    registerUserWithEmailAndPassword,
+    userLogout
+} = userSlice.actions;
 
-export default useSlice.reducer;
+export default userSlice.reducer;

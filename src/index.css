@@ -254,6 +254,15 @@ h1 {
 }
 
 
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  padding: 12px 14px !important;
+.css-1qm1lh {
+  padding-bottom:0 px;
 }
+
+.css-xilmwd-MuiPaper-root-MuiAlert-root{
+  padding: 2px 12px !important;
+}
+
+
+/* .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 12px 14px !important;
+} */

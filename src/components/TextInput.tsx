@@ -2,7 +2,7 @@ import { Alert, Box, InputLabel, TextField } from "@mui/material"
 import { ErrorMessage, useField } from 'formik';
 
 interface Props {
-  label: string;
+  label?: string;
   name: string;
   type?: 'text' | 'email' | 'password';
   placeholder?: string;
@@ -11,17 +11,17 @@ interface Props {
 
 export const TextInput = ({label, ...props}: Props) => {
   const [ field, meta ] = useField(props)
- 
+
   return (
     <Box sx={{ mb:2}}>
-      <InputLabel htmlFor={ props.id || props.name }>{ label }</InputLabel>
-      <TextField { ...field } { ...props } fullWidth />
-      {/* { meta.error && meta.touched &&  (
+      {/* <InputLabel htmlFor={ props.id || props.name }>{ label }</InputLabel> */}
+      <TextField { ...field } { ...props } fullWidth variant="standard"/>
+      { meta.error && meta.touched &&  (
           <Alert severity="error">
             <ErrorMessage name={ props.name } component="span" />
           </Alert>
         )
-      } */}
+      }
       
     </Box>
    
