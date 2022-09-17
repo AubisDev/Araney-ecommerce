@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { isUserChecked, userFirebaseLogout } from '../firebase';
 import { AppStore } from '../redux/store';
-
+import logo from '../assets/araney-logo.png';
 
 export const Navbar = () =>{
   const { token, username } = useSelector( (store: AppStore) => store.user);
@@ -29,9 +29,10 @@ export const Navbar = () =>{
             sx={{ display: 'flex', flexDirection: 'row', flexGrow: 0.5, alignItems:'center'}}
             onClick={ () => navigate('/')}
           >
-            <Typography variant="h4" component="div" sx={{ position:'relative', pb: 2, pr:2, mt:1 }}>
+            <img src={logo} alt="araney logo" className='logo'/>
+            <Typography variant="h4" component="div" sx={{ position:'relative', pb: 2, pr:2, mt:1, fontFamily: "'Mali', cursive;", fontWeight:500}}>
                 Araney
-                <Typography variant='subtitle1' component="span" style={{ position:'absolute', bottom:-2, right:0}}>
+                <Typography variant='subtitle1' component="span" style={{ position:'absolute', bottom:0, right:0, fontFamily: "'Mali', cursive", fontWeight:400, fontSize:'0.85rem' }}>
                     E-market 
                 </Typography>
             </Typography>

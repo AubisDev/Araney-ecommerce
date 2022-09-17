@@ -1,10 +1,9 @@
 import { lazy, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Navigate } from 'react-router-dom';
 import { RoutesWithNotFound } from "../utilities";
-import { PublicRoutes, PrivateRoutes } from "../models/routes";
-import { Navbar } from "../components/Navbar";
-import {PrivateAuthGuard, PublicAuthGuard} from '../guard/AuthGuard';
+import { PublicRoutes, PrivateRoutes } from "../models";
+import { Navbar, Footer } from "../components";
+import {PrivateAuthGuard, PublicAuthGuard} from '../guard';
 const Login = lazy(() => import('../pages/Public/Login'));
 const Register = lazy(() => import('../pages/Public/Register'));
 const Home = lazy(() => import('../pages/Public/Home/Home'));
@@ -29,6 +28,7 @@ export const Navigation = () => {
                         <Route path={`${PrivateRoutes.CHECKOUT}/*`} element={< Checkout/>} />
                     </Route>
                 </RoutesWithNotFound>
+                <Footer/>
             </BrowserRouter>
         </Suspense>
        

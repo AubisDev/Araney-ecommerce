@@ -1,11 +1,12 @@
 import { Box, Grid, Skeleton, Typography } from "@mui/material"
-import { useFetch } from '../../../../hooks/useFetch';
 import { ProductInfo } from '../../../../models/products';
 import StarIcon from '@mui/icons-material/Star';
+import { useFetch } from "../../../../hooks";
 
 export const FeaturedProducts = () => {
+    const url = 'https://fakestoreapi.com/products';
 
-    const { data: featuredProductsData } = useFetch('https://fakestoreapi.com/products')
+    const { data: featuredProductsData } = useFetch({url, itemsAmount:10});
     return (
     <Box sx={{ width: '100vw', minHeight:"90vh", height:"auto", mt:12, color:'warning.dark', background:'rgba(255,255,255,0.75)'}}>
         <Box sx={{ width: '80%', display:'flex', flexDirection:'column', margin:'auto' }}>
@@ -20,9 +21,13 @@ export const FeaturedProducts = () => {
                             { featuredProductsData ? <img  src={image} alt={title} style={{ objectFit:'cover', width:'100%',height:"200px", position: 'relative'}} /> : <Skeleton variant="rectangular" height='200px' width='200px' /> }
                             <Typography variant='subtitle2' align='left' component='p' sx={{ display:"flex", flexDirection:'column', pt:0.5, color:"black"}} >
                                 {title}
-                                <Typography variant='subtitle1' align='center' component='span' sx={{ display:"flex", flexDirection:'row', alignItems:'center',color:"warning.dark"}}>
-                                    {rating.rate < 4 ? 4.2 : rating.rate} 
-                                    <StarIcon fontSize="small"/>
+                                <Typography variant='subtitle1' align='center' component='span' sx={{ display:"flex", flexDirection:'row', alignItems:'center',color:"warning.dark", justifyContent:'space-between'}}>
+                                    {`$${price}`}
+                                    <span style={{ display:'flex', alignItems:'center'}}>
+                                        {rating.rate < 4 ? 4.2 : rating.rate} 
+                                        <StarIcon fontSize="small"/>
+                                    </span>
+                                    
                                 </Typography>
                             </Typography>
                         </Box>

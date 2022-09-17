@@ -1,3 +1,4 @@
+export * from './Footer';
 export * from './NavButton';
 export * from './Navbar';
 export * from './TextInput';
