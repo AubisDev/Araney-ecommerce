@@ -1,20 +1,25 @@
 import {AppBar, Toolbar, Typography, Button, Divider, Stack, Box, Container } from '@mui/material';
+import { User } from 'firebase/auth';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userLogout } from '../redux/states/user';
+import { isUserChecked, userFirebaseLogout } from '../firebase';
 import { AppStore } from '../redux/store';
-import { userFirebaseLogout } from '../utilities/authVerification';
+
 
 export const Navbar = () =>{
   const { token, username } = useSelector( (store: AppStore) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const handleLogout = () => {
-    userFirebaseLogout();
-    dispatch( userLogout({}));
-    navigate("/");
-  }
+  const [user, setUser] = useState<User>();
+  
+  useEffect(() => {
+    isUserChecked({ dispatch, setUser, navigate })
+  }, []);
+    
+  
+  const handleLogout = () => userFirebaseLogout({ dispatch });
 
   return (
     <Box sx={{ flexGrow: 1}}>
@@ -105,7 +110,4 @@ export const Navbar = () =>{
     </Box>
   );
 }
-
-
-
 

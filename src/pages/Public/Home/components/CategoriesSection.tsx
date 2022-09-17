@@ -35,5 +35,3 @@ export const CategoriesSection = () => {
     </Box>
   )
 }
-export default CategoriesSection
-// https://www.pexels.com/es-es/buscar/school/

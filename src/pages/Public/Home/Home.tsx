@@ -1,5 +1,5 @@
-import { FeaturedProducts, HeroSection } from "./components"
-import CategoriesSection from "./components/CategoriesSection"
+
+import { HeroSection, FeaturedProducts, CategoriesSection } from "./components"
 
 export const Home = () => {
   return (
@@ -10,4 +10,5 @@ export const Home = () => {
     </>
   )
 }
-export default Home
+
+export default Home;

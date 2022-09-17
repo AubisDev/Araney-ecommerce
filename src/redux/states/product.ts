@@ -9,6 +9,9 @@ export const EmptyProductState: ProductInfo = {
   image: '',
   category: '',
   discount: '',
+  rating: {
+    rate: 0
+  }
 };
 
 export const UserKey = 'user';

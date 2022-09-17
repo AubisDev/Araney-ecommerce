@@ -1,3 +1,5 @@
-export { default as CategoriesSection } from './CategoriesSection';
-export { default as FeaturedProducts } from './FeaturedProducts';
-export { default as HeroSection } from './HeroSection';
+export * from './CategoriesSection';
+export * from './CheckboxInput';
+export * from './FeaturedProducts';
+export * from './HeroSection';
+export * from './index';

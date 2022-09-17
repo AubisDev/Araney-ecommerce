@@ -1,65 +1,18 @@
 import { Box, Divider, Button, Typography } from "@mui/material"
 import { Formik, Form } from "formik"
-import * as Yup from 'yup'
 import { TextInput } from "../../components";
 import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch } from "react-redux";
-import { UserLogInWithGoogle, userSignInWithEmailAndPassword } from "../../redux/states/user";
-import { firebaseAuth } from '../../firebase/firebase';
-import { getIdToken, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, UserCredential } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-
-const validationSchema = Yup.object({
-  email: Yup
-    .string()
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: Yup
-    .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
-});
+import { googleSignIn, userSignIn } from "../../firebase/userAuth";
+import { loginValidationSchema } from "../../models/validationSchemas";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const googleSignIn = async() => {
-    signInWithPopup( firebaseAuth, new GoogleAuthProvider())
-    .then( (resp:UserCredential) => {
-        const { user } = resp;
-        dispatch( 
-          UserLogInWithGoogle({
-            username: user.displayName,
-            email: user.email,
-            token: GoogleAuthProvider.credentialFromResult(resp)?.accessToken
-          })
-        )
-        navigate("/");
-    })
-    .catch(error => {
-        console.log(error)
-        return error
-    })
-  }
-
-  const handleUserSignIn = async(email:string, password: string) => {
-    signInWithEmailAndPassword( firebaseAuth, email, password )
-    .then( async(resp:UserCredential ) => {
-      const { user: userAuth } = resp;
-      let token: string= '' ;
-      await getIdToken( userAuth ).then( results => {
-        token = results;
-      } )
-      dispatch( 
-        userSignInWithEmailAndPassword({
-          email: userAuth.email,
-          username: userAuth.displayName,
-          token
-        })
-      )
-      navigate("/");
-    })
+  const handleGoogleSignIn = () => {
+    googleSignIn({ dispatch, navigate });
   }
 
   return (
@@ -81,10 +34,10 @@ export const Login = () => {
               email:'',
               password:''
             }}
-            onSubmit={ ({ email, password}) => {
-              handleUserSignIn(email, password)
+            onSubmit={ async({ email, password}) => {
+              userSignIn({ dispatch, email, password, navigate })
             }}
-            validationSchema = { validationSchema }
+            validationSchema = { loginValidationSchema }
           >
             <Form>
               <TextInput
@@ -112,7 +65,7 @@ export const Login = () => {
           variant="contained" 
           color='warning' 
           sx={{ width:'60%', margin:"auto"}}
-          onClick={ googleSignIn }
+          onClick={handleGoogleSignIn}
         >
           <GoogleIcon color='inherit' sx={{pr:1 }} /> Sign in with google
         </Button>

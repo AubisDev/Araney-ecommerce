@@ -1,4 +1,4 @@
-import { Alert, Box, InputLabel, TextField } from "@mui/material"
+import { Alert, Box, TextField } from "@mui/material"
 import { ErrorMessage, useField } from 'formik';
 
 interface Props {
@@ -14,7 +14,6 @@ export const TextInput = ({label, ...props}: Props) => {
 
   return (
     <Box sx={{ mb:2}}>
-      {/* <InputLabel htmlFor={ props.id || props.name }>{ label }</InputLabel> */}
       <TextField { ...field } { ...props } fullWidth variant="standard"/>
       { meta.error && meta.touched &&  (
           <Alert severity="error">
@@ -27,4 +26,3 @@ export const TextInput = ({label, ...props}: Props) => {
    
   )
 }
-export default TextInput

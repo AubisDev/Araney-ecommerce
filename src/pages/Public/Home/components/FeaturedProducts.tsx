@@ -3,7 +3,7 @@ import { useFetch } from '../../../../hooks/useFetch';
 import { ProductInfo } from '../../../../models/products';
 import StarIcon from '@mui/icons-material/Star';
 
-const FeaturedProducts = () => {
+export const FeaturedProducts = () => {
 
     const { data: featuredProductsData } = useFetch('https://fakestoreapi.com/products')
     return (
@@ -34,4 +34,3 @@ const FeaturedProducts = () => {
     </Box>
   )
 }
-export default FeaturedProducts

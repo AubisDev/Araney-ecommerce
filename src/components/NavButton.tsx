@@ -19,4 +19,3 @@ export const NavButton = ({text}:NavButtonProps) => {
     <NavbarButton color="inherit" size="large">{text}</NavbarButton>
   )
 }
-export default NavButton

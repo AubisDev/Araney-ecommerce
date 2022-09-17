@@ -1,1 +1,3 @@
-export { RoutesWithNotFound } from './RoutesWithNotFound';
+export * from './RoutesWithNotFound';
+export * from './index';
+export * from './localstorage';
