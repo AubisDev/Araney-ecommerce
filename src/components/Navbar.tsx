@@ -1,11 +1,29 @@
 import {AppBar, Toolbar, Typography, Button, Divider, Stack, Box, Container } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { userLogout } from '../redux/states/user';
+import { AppStore } from '../redux/store';
+import { userFirebaseLogout } from '../utilities/authVerification';
 
 export const Navbar = () =>{
+  const { token, username } = useSelector( (store: AppStore) => store.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    userFirebaseLogout();
+    dispatch( userLogout({}));
+    navigate("/");
+  }
+
   return (
     <Box sx={{ flexGrow: 1}}>
       <AppBar position="fixed" sx={{ height: '9vh', backgroundColor: 'warning.light', }}>
         <Toolbar style={{display: 'flex', justifyContent: 'space-evenly' }}>
-          <Box style={{ display: 'flex', flexDirection: 'row', flexGrow: 0.5, alignItems:'center'}}>
+          <Box 
+            sx={{ display: 'flex', flexDirection: 'row', flexGrow: 0.5, alignItems:'center'}}
+            onClick={ () => navigate('/')}
+          >
             <Typography variant="h4" component="div" sx={{ position:'relative', pb: 2, pr:2, mt:1 }}>
                 Araney
                 <Typography variant='subtitle1' component="span" style={{ position:'absolute', bottom:-2, right:0}}>
@@ -15,15 +33,68 @@ export const Navbar = () =>{
           </Box>
           <Box sx={{display: 'flex',flexDirection:"row" }}>
             <Stack direction='row' spacing={1   }>            
-                <Button  color="inherit" size="large" className="navButton">Categories</Button>
-                <Button  color="inherit" size="large" className="navButton">Contact us</Button>
+                <Button  
+                  color="inherit" 
+                  size="large" 
+                  className="navButton"
+                  onClick={ () => navigate('/')}
+                >
+                    Categories
+                </Button>
+
+                <Button  
+                  color="inherit" 
+                  size="large" 
+                  className="navButton"
+                  onClick={ () => navigate('/')}
+                >
+                    Contact us
+                </Button>
                 {/* //! Add condition show of Checkout option */}
             </Stack>
             <Divider orientation="vertical" variant="middle" flexItem sx={{ mx:3, backgroundColor:'white',  }}/>
             <Stack direction='row' spacing={1}>
                 {/* //! Show register or cart  */}
-                <Button color="inherit" size="large" className="navButton">Sign-up</Button>
-                <Button color="inherit" size="large" className="navButton">Login</Button>
+               {
+                token !== '' && username !== '' ? 
+                (
+                  <>
+                    <Typography variant='button' color='inherit' align="center" sx={{ display:'flex', alignItems:'center', }} >
+                      Welcome,  <span style={{ color: '#0288d1',paddingLeft:'5px' }}>{username}</span>
+                    </Typography>
+                    <Button 
+                      color="inherit" 
+                      size="large" 
+                      className="navButton"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Button>
+                  </>
+                )
+                :
+                (
+                  <>
+                    <Button 
+                      color="inherit" 
+                      size="large" 
+                      className="navButton"
+                      onClick={ () => navigate('/register')}
+                    > 
+                      Sign-up
+                    </Button>
+
+                    <Button 
+                      color="inherit" 
+                      size="large" 
+                      className="navButton"
+                      onClick={ () => navigate('/login')}
+                    > 
+                      Login
+                    </Button>
+                  </>
+                )
+               }
             </Stack>
           </Box>
         </Toolbar>
@@ -34,5 +105,7 @@ export const Navbar = () =>{
     </Box>
   );
 }
+
+
 
 

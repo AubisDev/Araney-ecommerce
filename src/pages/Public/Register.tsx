@@ -4,10 +4,11 @@ import * as Yup from 'yup'
 import { TextInput } from "../../components";
 import GoogleIcon from '@mui/icons-material/Google';
 import { CheckboxInput } from './Home/components/CheckboxInput';
-import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, getIdToken, GoogleAuthProvider, signInWithPopup, updateProfile, UserCredential } from "firebase/auth";
 import { firebaseAuth } from "../../firebase/firebase";
 import { useDispatch } from "react-redux";
-import { registerUserWithEmailAndPassword } from "../../redux/states/user";
+import { registerUserWithEmailAndPassword, UserLogInWithGoogle } from "../../redux/states/user";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object({
   username: Yup
@@ -18,7 +19,7 @@ const validationSchema = Yup.object({
     .string()
     .email('Enter a valid email')
     .required('Email is required'),
-  password1: Yup
+  password: Yup
     .string()
     .min(8, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
@@ -30,12 +31,46 @@ const validationSchema = Yup.object({
 
 export const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleUserRegistration = async(email:string, password: string) => {
+  const handleUserRegistration = async(email:string, password: string, username:string) => {
     createUserWithEmailAndPassword( firebaseAuth, email, password )
-    .then( (userAuth:UserCredential ) => {
-      console.log(userAuth);
-      // dispatch( registerUserWithEmailAndPassword(userAuth) )
+    .then( async(resp:UserCredential ) => {
+      const { user: userAuth } = resp;
+      let token: string= '' ;
+      getIdToken( userAuth ).then( results => {
+        token = results;
+      } );
+      await updateProfile( userAuth,{
+        displayName: username
+      })
+      dispatch( 
+        registerUserWithEmailAndPassword({
+          email: userAuth.email,
+          username: userAuth.displayName,
+          token
+        })
+      )
+      navigate("/");
+    })
+  }
+
+  const googleSignIn = async() => {
+    signInWithPopup( firebaseAuth, new GoogleAuthProvider())
+    .then( (resp:UserCredential) => {
+        const { user } = resp;
+        dispatch( 
+          UserLogInWithGoogle({
+            userName: user.displayName,
+            email: user.email,
+            token: GoogleAuthProvider.credentialFromResult(resp)?.accessToken
+          })
+        )
+        navigate("/");
+    })
+    .catch(error => {
+        console.log(error)
+        return error
     })
   }
 
@@ -60,8 +95,8 @@ export const Register = () => {
               password:'',
               terms: false
             }}
-            onSubmit={ ({ email, password}) => {
-              console.log(email)
+            onSubmit={ ({ email, password, username}) => {
+              handleUserRegistration(email, password, username);
             }}
             validationSchema = { validationSchema }
           >
@@ -99,7 +134,12 @@ export const Register = () => {
         </Box>
         <Divider sx={{ py:3,}}>OR</Divider>
 
-        <Button variant="contained" color='warning' sx={{ width:'60%', margin:"auto"}}>
+        <Button 
+          variant="contained" 
+          color='warning' 
+          sx={{ width:'60%', margin:"auto"}}
+          onClick={ googleSignIn }
+          >
           <GoogleIcon color='inherit' sx={{pr:1 }} /> Sign in with google
         </Button>
 

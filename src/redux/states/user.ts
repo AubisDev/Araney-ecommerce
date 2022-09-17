@@ -1,24 +1,41 @@
 import { createSlice, Slice } from '@reduxjs/toolkit';
+import { string } from 'yup';
 
-const userInitialValue = {
-    user: null
+
+export interface UserInformation {
+    username: string;
+    email: string;
+    token: string;
 }
+ 
+const userInitialValue:UserInformation = {
+    username: '',
+    email: '',
+    token: ''
+} 
 
 export const userSlice:Slice = createSlice({
     name:'user',
     initialState: userInitialValue,
     reducers:{
         UserLogInWithGoogle: (state, action) => {
-            state.user = action.payload
+            return action.payload
         },
 
-        userLogout: ( state ) => {
-            state.user = null;
+        userLogout: (state) => {
+            state.user = userInitialValue;
         },
 
         registerUserWithEmailAndPassword: (state, action) => {
-            // const { email, password } = action.payload;
-            // state.user = 
+            return action.payload
+        },
+        
+        userSignInWithEmailAndPassword: (state, action) => {
+            return action.payload
+        },
+
+        setUserData: (state, action) => {
+            return action.payload
         }
     }
 });
@@ -26,7 +43,9 @@ export const userSlice:Slice = createSlice({
 export const { 
     UserLogInWithGoogle,
     registerUserWithEmailAndPassword,
-    userLogout
+    userLogout,
+    userSignInWithEmailAndPassword,
+    setUserData
 } = userSlice.actions;
 
 export default userSlice.reducer;

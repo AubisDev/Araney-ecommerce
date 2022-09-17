@@ -4,9 +4,10 @@ import * as Yup from 'yup'
 import { TextInput } from "../../components";
 import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch } from "react-redux";
-import { UserLogInWithGoogle } from "../../redux/states/user";
+import { UserLogInWithGoogle, userSignInWithEmailAndPassword } from "../../redux/states/user";
 import { firebaseAuth } from '../../firebase/firebase';
-import { GoogleAuthProvider, signInWithPopup, UserCredential } from "firebase/auth";
+import { getIdToken, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, UserCredential } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   email: Yup
@@ -21,6 +22,7 @@ const validationSchema = Yup.object({
 
 export const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const googleSignIn = async() => {
     signInWithPopup( firebaseAuth, new GoogleAuthProvider())
@@ -28,12 +30,12 @@ export const Login = () => {
         const { user } = resp;
         dispatch( 
           UserLogInWithGoogle({
-            userName: user.displayName,
+            username: user.displayName,
             email: user.email,
             token: GoogleAuthProvider.credentialFromResult(resp)?.accessToken
           })
-        
         )
+        navigate("/");
     })
     .catch(error => {
         console.log(error)
@@ -41,6 +43,24 @@ export const Login = () => {
     })
   }
 
+  const handleUserSignIn = async(email:string, password: string) => {
+    signInWithEmailAndPassword( firebaseAuth, email, password )
+    .then( async(resp:UserCredential ) => {
+      const { user: userAuth } = resp;
+      let token: string= '' ;
+      await getIdToken( userAuth ).then( results => {
+        token = results;
+      } )
+      dispatch( 
+        userSignInWithEmailAndPassword({
+          email: userAuth.email,
+          username: userAuth.displayName,
+          token
+        })
+      )
+      navigate("/");
+    })
+  }
 
   return (
     <Box sx={{ width: '100vw', height:"80vh", color:'warning.dark', mt:8, position:'relative'}}>
@@ -62,7 +82,7 @@ export const Login = () => {
               password:''
             }}
             onSubmit={ ({ email, password}) => {
-              console.log(email)
+              handleUserSignIn(email, password)
             }}
             validationSchema = { validationSchema }
           >
