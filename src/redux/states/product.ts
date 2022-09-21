@@ -1,29 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { ProductInfo } from "../../models/products";
-import { getLocalStorage } from "../../utilities/localstorage";
+import { createSlice, Slice } from '@reduxjs/toolkit';
+import { ProductInfo } from '../../models/products';
+// import { getLocalStorage } from "../../utilities/localstorage";
 
-export const EmptyProductState: ProductInfo = {
-  id: 0,
-  name: '',
-  price: 0,
-  image: '',
-  category: '',
-  discount: '',
-  rating: {
-    rate: 0
-  }
+
+interface ProductState {
+  selectedProduct: ProductInfo | null
+}
+
+export const EmptyProductState:ProductState = {
+  selectedProduct: null
 };
 
-export const UserKey = 'user';
 
-export const productSlice = createSlice({
-  name: 'user',
-  initialState: getLocalStorage( 'product', EmptyProductState ),
+export const productSlice:Slice = createSlice({
+  name: 'product',
+  initialState: EmptyProductState,
   reducers: {
-    
+    setSelectedProduct: (state, action) => {
+      return action.payload
+    },
+
   }
 });
 
-export const { } = productSlice.actions;
+export const { setSelectedProduct } = productSlice.actions;
 
 export default productSlice.reducer;

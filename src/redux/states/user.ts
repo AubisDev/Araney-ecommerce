@@ -1,5 +1,4 @@
 import { createSlice, Slice } from '@reduxjs/toolkit';
-import { string } from 'yup';
 
 
 export interface UserInformation {
@@ -8,7 +7,7 @@ export interface UserInformation {
     token: string;
 }
  
-const userInitialValue:UserInformation = {
+const emptyUserState:UserInformation = {
     username: '',
     email: '',
     token: ''
@@ -16,14 +15,14 @@ const userInitialValue:UserInformation = {
 
 export const userSlice:Slice = createSlice({
     name:'user',
-    initialState: userInitialValue,
+    initialState: emptyUserState,
     reducers:{
         UserLogInWithGoogle: (state, action) => {
             return action.payload
         },
 
         userLogout: (state) => {
-            state.user = userInitialValue;
+            state.user = emptyUserState;
         },
 
         registerUserWithEmailAndPassword: (state, action) => {

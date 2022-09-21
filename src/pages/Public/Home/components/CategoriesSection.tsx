@@ -9,7 +9,7 @@ export const CategoriesSection = () => {
     <Box sx={{ width: '100vw', minHeight:"100vh", height:"auto", color:'warning.dark', mt:8}}>
         <Box sx={{ width: '80%', display:'flex', flexDirection:'column', margin:'auto' }}>
             <Typography variant='h4' align='left' component='h3' sx={{ py:2, borderBottom:'2px solid rgba(148,148,148,.25)' }}>
-                Check our variety of products
+                Variety in categories
             </Typography>
             
             <Grid container direction='row' spacing={5} sx={{ p:3}} >

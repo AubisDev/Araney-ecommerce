@@ -26,7 +26,7 @@ export const Navbar = () =>{
       <AppBar position="fixed" sx={{ height: '9vh', backgroundColor: 'warning.light', }}>
         <Toolbar style={{display: 'flex', justifyContent: 'space-evenly' }}>
           <Box 
-            sx={{ display: 'flex', flexDirection: 'row', flexGrow: 0.5, alignItems:'center'}}
+            sx={{ display: 'flex', flexDirection: 'row', flexGrow: 0.5, alignItems:'center', cursor:'pointer'}}
             onClick={ () => navigate('/')}
           >
             <img src={logo} alt="araney logo" className='logo'/>
@@ -38,7 +38,7 @@ export const Navbar = () =>{
             </Typography>
           </Box>
           <Box sx={{display: 'flex',flexDirection:"row" }}>
-            <Stack direction='row' spacing={1   }>            
+            <Stack direction='row' spacing={1}>            
                 <Button  
                   color="inherit" 
                   size="large" 
@@ -52,9 +52,9 @@ export const Navbar = () =>{
                   color="inherit" 
                   size="large" 
                   className="navButton"
-                  onClick={ () => navigate('/')}
+                  onClick={ () => navigate('/about')}
                 >
-                    Contact us
+                    About us
                 </Button>
                 {/* //! Add condition show of Checkout option */}
             </Stack>
