@@ -1,29 +1,32 @@
-import {AppBar, Toolbar, Typography, Button, Divider, Stack, Box, Container } from '@mui/material';
-import { User } from 'firebase/auth';
-import { useState, useEffect } from 'react';
+import {AppBar, Toolbar, Typography, Button, Divider, Stack, Box, Container, Badge } from '@mui/material';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { isUserChecked, userFirebaseLogout } from '../firebase';
 import { AppStore } from '../redux/store';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import logo from '../assets/araney-logo.png';
+import { PrivateRoutes } from '../models';
 
 export const Navbar = () =>{
   const { token, username } = useSelector( (store: AppStore) => store.user);
+  const { cart } = useSelector( (store: AppStore) => store.product);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const [user, setUser] = useState<User>();
   
   useEffect(() => {
-    isUserChecked({ dispatch, setUser, navigate })
+    isUserChecked({ dispatch, navigate })
   }, []);
     
   
   const handleLogout = () => userFirebaseLogout({ dispatch });
+  
+  const handleCartClick = () => navigate(`/${PrivateRoutes.CHECKOUT}`);
 
   return (
     <Box sx={{ flexGrow: 1}}>
-      <AppBar position="fixed" sx={{ height: '9vh', backgroundColor: 'warning.light', }}>
+      <AppBar position="fixed" sx={{ height: '10vh', backgroundColor: 'warning.light', }}>
         <Toolbar style={{display: 'flex', justifyContent: 'space-evenly' }}>
           <Box 
             sx={{ display: 'flex', flexDirection: 'row', flexGrow: 0.5, alignItems:'center', cursor:'pointer'}}
@@ -56,18 +59,22 @@ export const Navbar = () =>{
                 >
                     About us
                 </Button>
-                {/* //! Add condition show of Checkout option */}
             </Stack>
             <Divider orientation="vertical" variant="middle" flexItem sx={{ mx:3, backgroundColor:'white',  }}/>
             <Stack direction='row' spacing={1}>
-                {/* //! Show register or cart  */}
                {
                 token !== '' && username !== '' ? 
                 (
                   <>
-                    <Typography variant='button' color='inherit' align="center" sx={{ display:'flex', alignItems:'center', }} >
-                      Welcome,  <span style={{ color: '#0288d1',paddingLeft:'5px' }}>{username}</span>
+
+                    <Badge badgeContent={cart?.length} color="primary" onClick={ handleCartClick } sx={{ cursor:'pointer'}}>
+                      <ShoppingCartIcon color="action" />
+                    </Badge>
+
+                    <Typography variant='button' color='inherit' align="center" sx={{ display:'flex', alignItems:'center', paddingLeft:"15px"}} >
+                      Welcome,  <span style={{ color: '#0288d1',paddingLeft:'5px',}}>{username}</span>
                     </Typography>
+
                     <Button 
                       color="inherit" 
                       size="large" 

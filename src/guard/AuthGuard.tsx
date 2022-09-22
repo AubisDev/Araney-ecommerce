@@ -5,8 +5,8 @@ import { AppStore } from '../redux/store';
 
 
 export const PrivateAuthGuard = () => {
-    const userState = useSelector( (store:AppStore) => store.user);
-    return userState.username ? <Outlet /> : <Navigate replace to={PublicRoutes.LOGIN} />;
+    const { username } = useSelector( (store:AppStore) => store.user);
+    return username ? <Outlet /> : <Navigate replace to={PublicRoutes.LOGIN} />;
 }
 
 

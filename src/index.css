@@ -44,6 +44,7 @@ h1 {
 }
 
 .navButton {
+  padding-left: 20px !important;
   background: 
       linear-gradient(currentColor 0 0) 
       bottom /var(--d, 0) 3px 
@@ -271,6 +272,14 @@ background-size: cover !important;
 
 .css-1gu2tss-MuiButtonBase-root-MuiRadio-root{
   color: #fff !important;
+}
+
+.css-11pbyhm-MuiSvgIcon-root{
+  height: auto !important;
+}
+
+.css-106c1u2-MuiBadge-badge{
+  top: 20% !important;
 }
 
 .featuredProduct{

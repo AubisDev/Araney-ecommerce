@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { ProductInfo } from '../models/products';
 import { UserInfo } from '../models/user';
-import productSliceReducer from './states/product';
+import productSliceReducer, { CartAndProductInfo } from './states/product';
 import userSliceReducer from './states/user';
 
 export interface AppStore {
-  product: ProductInfo;
+  product: CartAndProductInfo;
   user: UserInfo;
 }
 

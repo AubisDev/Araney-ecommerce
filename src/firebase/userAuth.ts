@@ -7,7 +7,6 @@ import { onAuthStateChanged } from "firebase/auth"
 
 interface AuthCheckerProps {
     dispatch: Dispatch;
-    setUser: (user:User) => void;
     navigate: NavigateFunction;
 }
 
@@ -36,7 +35,7 @@ interface UserLogoutProps {
 }
 
 
-export const isUserChecked = ({ dispatch, setUser, navigate }:AuthCheckerProps ) => {
+export const isUserChecked = ({ dispatch,  navigate }:AuthCheckerProps ) => {
     firebaseAuth.onAuthStateChanged( async(user: User | null) => {
       if (user) {
         const token = await firebaseAuth.currentUser?.getIdToken(true);
@@ -47,7 +46,6 @@ export const isUserChecked = ({ dispatch, setUser, navigate }:AuthCheckerProps )
                 token
             })
         )
-        setUser( user );
         navigate('/home');
       } else {
         dispatch( userLogout({}) )

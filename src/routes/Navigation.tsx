@@ -31,7 +31,7 @@ export const Navigation = () => {
                     
                     {/* //! Add User has to be logged in to show  with a Guard*/}
                     <Route element={<PrivateAuthGuard/>}>
-                        <Route path={`${PrivateRoutes.CHECKOUT}/*`} element={< Checkout/>} />
+                        <Route path={`${PrivateRoutes.CHECKOUT}/*`} element={<Checkout/>} />
                     </Route>
                 </RoutesWithNotFound>
                 <Footer/>
