@@ -14,12 +14,8 @@ export interface ProductInfo{
     
 }
 
-interface CartItemProps{
+export interface CartItemProps{
     items: ProductInfo;
     amount: number;
     size: string;
-}
-
-export interface CartProps {
-    cartItems: CartItemProps[];
 }

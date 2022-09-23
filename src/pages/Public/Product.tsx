@@ -14,11 +14,9 @@ const Product = () => {
   
   const dispatch = useDispatch();
   const { amount, addOne, restOne } = useCounter(1);
-  const { productId, productName } = useParams();
   const [size, setSize] = useState('XS');
   const selectedItem  = useSelector( (store: AppStore) => store.product.selectedProduct);
-  const cart = useSelector( (store: AppStore) => store.product.cart);
-  const { price, description, category, image, rating, title } = selectedItem;
+  const { price, description, category, image, rating, title } =  selectedItem;
 
   const handleAddItemToCart = ( itemAmount:number, size:string) => {
     dispatch(  addCartItem({

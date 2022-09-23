@@ -1,11 +1,11 @@
 import { createSlice, Slice } from '@reduxjs/toolkit';
-import { CartProps, ProductInfo } from '../../models/products';
+import { CartItemProps, ProductInfo } from '../../models/products';
 // import { getLocalStorage } from "../../utilities/localstorage";
 
 
 export interface CartAndProductInfo {
   selectedProduct: ProductInfo | null;
-  cart: CartProps[];
+  cart: CartItemProps[];
 }
 
 export const EmptyProductState:CartAndProductInfo = {
