@@ -4,8 +4,7 @@ export interface ProductInfo{
     discount?: string;
     id: number;
     image: string;
-    name: string;
-    price?: number;
+    price: number;
     rating: {
         rate: number
     };
@@ -15,7 +14,7 @@ export interface ProductInfo{
 }
 
 export interface CartItemProps{
-    items: ProductInfo;
+    item: ProductInfo;
     amount: number;
     size: string;
 }

@@ -1,8 +1,5 @@
 import { useState } from 'react';
 
-
-
-
 export const usePagination = ( data: any, itemsPerPage: number ) => {
 
     const [currentPage, setCurrentPage] = useState<number>(1);

@@ -35,41 +35,32 @@ export const productSlice:Slice = createSlice({
     },
 
     removeCartItem: (state, action) => {
-      let newCartState = state?.cart.items.filter( (item:ProductInfo) => item.id !== action.payload );
+      let newCartState = state.cart.filter( ({item}:CartItemProps) => item.id !== action.payload );
       return {
         ...state,
-        cart: {
-          items: newCartState
-        }
+        cart: newCartState
+
       }
     },
 
-    increaseCartItemAmount : (state) => {
-      let increasedAmount = state.cart.amount;
-        if( state.cart.amount < 5){
-          increasedAmount++;
-          return {
-            ...state,
-            cart:{
-              amount: increasedAmount
-            }
-          }
+    increaseCartItemAmount: (state, action) => {
+      let itemFound = state.cart.find( (cartItem:CartItemProps) => cartItem.item.id === action.payload );
+
+      if( itemFound ){
+          if (itemFound.amount < 5){
+            itemFound.amount = itemFound.amount + 1;
+          } 
       }
-      return state        
     },
 
-    decreaseCartItemAmount: (state) => {
-      let decreasedAmount = state.cart.amount;
-      if( state.cart.amount > 1){
-        decreasedAmount++;
-        return {
-          ...state,
-          cart:{
-            amount: decreasedAmount
-          }
-        }
+    decreaseCartItemAmount: (state, action) => {
+      let itemFound = state.cart.find( (cartItem:CartItemProps) => cartItem.item.id === action.payload );
+
+      if( itemFound ){
+          if (itemFound.amount > 1){
+            itemFound.amount = itemFound.amount - 1;
+          } 
       }
-      return state
     },
 
     changeSize : (state, action) => {

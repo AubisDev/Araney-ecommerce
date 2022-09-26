@@ -11,6 +11,7 @@ export const mockData = [
       image: "https://api.lorem.space/image?w=640&h=480&r=5866",
     },
     images: [""],
+    size:"M",
     categoryId: 1,
   },
   {
@@ -29,6 +30,7 @@ export const mockData = [
       "https://api.lorem.space/image/fashion?w=640&h=480&r=2278",
       "https://api.lorem.space/image/fashion?w=640&h=480&r=7114",
     ],
+    size:"XS",
   },
   {
     id: 3,
@@ -46,6 +48,7 @@ export const mockData = [
       "https://api.lorem.space/image/shoes?w=640&h=480&r=886",
       "https://api.lorem.space/image/shoes?w=640&h=480&r=8644",
     ],
+    size:"S",
   },
   {
     id: 4,
