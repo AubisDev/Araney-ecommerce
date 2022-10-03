@@ -10,7 +10,7 @@ import { PrivateRoutes } from '../models';
 
 export const Navbar = () =>{
   const { token, username } = useSelector( (store: AppStore) => store.user);
-  const { cart } = useSelector( (store: AppStore) => store.product);
+  const  cartState = useSelector( (store: AppStore) => store.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -67,7 +67,7 @@ export const Navbar = () =>{
                 (
                   <>
 
-                    <Badge badgeContent={cart?.length} color="primary" onClick={ handleCartClick } sx={{ cursor:'pointer'}}>
+                    <Badge badgeContent={Object.values(cartState).length} color="primary" onClick={ handleCartClick } sx={{ cursor:'pointer'}}>
                       <ShoppingCartIcon color="action" />
                     </Badge>
 

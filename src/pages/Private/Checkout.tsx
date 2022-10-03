@@ -5,28 +5,25 @@ import { usePagination } from "../../hooks/usePagination";
 import { AppStore } from "../../redux/store";
 import { useState } from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { decreaseCartItemAmount, increaseCartItemAmount, removeCartItem } from "../../redux/states/product";
+import { decreaseCartItemAmount, increaseCartItemAmount, removeCartItem } from "../../redux/states/cart";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import { CartItemProps } from "../../models";
+import { CartInfo } from "../../models";
 
 export const Checkout = () => {
   const dispatch = useDispatch();
-  const cart = useSelector( (store: AppStore) => store.product.cart);
+  const cartState = useSelector( (store: AppStore) => store.cart);
   const [page, setPage] = useState<number>(1);
-  const itemsPerPage = 3;
-  const { jumpToPage, currentData, } = usePagination(cart , itemsPerPage );
-
-  const count = Math.ceil( cart.length/itemsPerPage )
+  const itemsPerPage:number  = 3;
+  const { jumpToPage, currentData } = usePagination(cartState , itemsPerPage );
+  const count = Math.ceil( Object.values(cartState).length/itemsPerPage )
 
   const handlePageJump = ( e:React.ChangeEvent<any> , page:number ) => {
     setPage( page );
     jumpToPage( page );
   };
 
-  const handleRemoveItem = (id:number) => {
-    dispatch( removeCartItem(id) );
-  }
+  const handleRemoveItem = (id:number) => dispatch( removeCartItem(id) );
  
   const handleIncreaseItemQuantity = ( id:number) => dispatch( increaseCartItemAmount(id) )
 
@@ -49,7 +46,7 @@ export const Checkout = () => {
         </Box>
         <Stack sx={{ height:"calc(100% - 62px)" }} spacing={1}>
           {
-            currentData().map( ({item, amount, size}: CartItemProps) => (
+            currentData().map( ({item, amount, size}: CartInfo) => (
               <Box key={item.id} sx={{ height: '29%', width:'100%', display:"grid", gridTemplateColumns: 'repeat(7, minmax(0, 1fr))', color:'black', borderBottom:1, borderColor:'rgba(128,128,128,0.25)'}}>
                 <Box sx={{ gridColumn: 'span 3 / span 3', display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between"}}>
                   <img src={item.image} alt={item.title} style={{ height:'145px',width:"auto", paddingLeft:"8px", objectFit:"cover", margin:"auto"}}/>
@@ -96,9 +93,9 @@ export const Checkout = () => {
       </Box>
       
         <Box 
-          sx={{ width: '20%', height:'100%', display:"flex", flexDirection:'column', border:2, borderColor:'gray', background:"#fff", boxShadow:3}}
+          sx={{ width: '20%', height:'60%', display:"flex", alignItems:"center", flexDirection:'column', border:2, borderColor:'gray', background:"#fff", boxShadow:3}}
         >
-          
+          <Typography variant="h5" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} >Order Summary</Typography>
         </Box>
       </Box>
       

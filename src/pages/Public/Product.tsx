@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { AppStore } from "../../redux/store";
 import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from "@mui/material";
@@ -7,7 +6,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import StarIcon from '@mui/icons-material/Star';
 import { useCounter } from "../../hooks/useCounter";
-import { addCartItem } from "../../redux/states/product";
+import { addCartItem } from "../../redux/states/cart";
 import { useState } from 'react';
 
 const Product = () => {
@@ -15,7 +14,7 @@ const Product = () => {
   const dispatch = useDispatch();
   const { amount, addOne, restOne } = useCounter(1);
   const [size, setSize] = useState('XS');
-  const selectedItem  = useSelector( (store: AppStore) => store.product.selectedProduct);
+  const selectedItem  = useSelector( (store: AppStore) => store.product);
   const { price, description, category, image, rating, title } =  selectedItem;
 
   const handleAddItemToCart = ( itemAmount:number, size:string) => {
