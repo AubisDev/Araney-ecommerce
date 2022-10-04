@@ -9,6 +9,7 @@ import { decreaseCartItemAmount, increaseCartItemAmount, removeCartItem } from "
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { CartInfo } from "../../models";
+import Swal from "sweetalert2";
 
 export const Checkout = () => {
   const dispatch = useDispatch();
@@ -29,11 +30,35 @@ export const Checkout = () => {
 
   const handleDecreaseItemQuantity = ( id:number) => dispatch( decreaseCartItemAmount(id) )
 
+  const getTotalItems = () => {
+    let totalItems = 0;
+    for( let cartItem of currentData()){
+      totalItems += cartItem.amount
+    }
+    return totalItems.toFixed(0);
+  }
+
+  const getTotalPrice = () => {
+    let totalPrice = 0;
+    for( let cartItem of currentData()){
+      totalPrice += (cartItem.amount * cartItem.item.price)
+    }
+    return totalPrice.toFixed(2);
+  }
+
+  const handleCheckout = () => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'This function is not implemented yet',
+    })
+  }
+``
   return (
     <Box sx={{ width: '100vw', height: '100vh', display:'flex', alignItems:"center"}}>
       <Box 
         sx={{ width: '90%', minHeight: '80%', height: '80%', margin:'auto', mt:12, display:"flex", flexDirection:'', justifyContent:"space-between"}}
-      >
+      >``
         <Box 
           sx={{ width: '75%', maxHeight:'100%', position: 'relative', display:"flex", flexDirection:'column', border:2, borderColor:'gray', background: '#fff', boxShadow:4}}
         >
@@ -49,10 +74,10 @@ export const Checkout = () => {
             currentData().map( ({item, amount, size}: CartInfo) => (
               <Box key={item.id} sx={{ height: '29%', width:'100%', display:"grid", gridTemplateColumns: 'repeat(7, minmax(0, 1fr))', color:'black', borderBottom:1, borderColor:'rgba(128,128,128,0.25)'}}>
                 <Box sx={{ gridColumn: 'span 3 / span 3', display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between"}}>
-                  <img src={item.image} alt={item.title} style={{ height:'145px',width:"auto", paddingLeft:"8px", objectFit:"cover", margin:"auto"}}/>
+                  <img src={item.image} alt={item.title} style={{ height:'125px',width:"auto", paddingLeft:"8px", objectFit:"cover", margin:"auto"}}/>
                   <Box sx={{ display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center", width:"40%"}}>
-                    <Typography variant="subtitle1" align='center'> {item.title} </Typography>
-                    <Typography variant="subtitle2" align='center' sx={{color:"darkslategray"}}> Size: {size} </Typography>
+                    <Typography variant="subtitle2" align='center'> {item.title} </Typography>
+                    <Typography variant="subtitle2" align='center' color="darkslategray"> Size: {size} </Typography>
                   </Box>
                 </Box >
                 <Box sx={{ display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -93,9 +118,38 @@ export const Checkout = () => {
       </Box>
       
         <Box 
-          sx={{ width: '20%', height:'60%', display:"flex", alignItems:"center", flexDirection:'column', border:2, borderColor:'gray', background:"#fff", boxShadow:3}}
+          sx={{ width: '20%', height:'80%', display:"flex", alignItems:"center", margin:"auto", flexDirection:'column', position:"relative", border:2, borderColor:'gray', background:"#fff", boxShadow:3}}
         >
-          <Typography variant="h5" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} >Order Summary</Typography>
+          <Typography variant="h5" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} width={'100%'} borderBottom={2} borderColor={'rgba(176,176,176,0.40)'} align='center'>Order Summary</Typography>
+          
+          
+          <Typography variant="h6" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} >Total items:</Typography>
+          <Typography variant="h6" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} >
+            {getTotalItems()}
+            <i className="fa-solid fa-cubes" style={{ paddingLeft:"6px" }}></i>
+          </Typography>
+
+          <Typography variant="h6" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} >Total unique items:</Typography>
+          <Typography variant="h6" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} >
+            {currentData().length}
+            <i className="fa-sharp fa-solid fa-cube" style={{ paddingLeft:"6px" }}></i>
+          </Typography>
+          
+          <Typography variant="h6" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} >Total amount to pay</Typography>
+          <Typography variant="h6" fontFamily='Dosis' color='black' fontWeight={600} py={1.5} letterSpacing={2}>${getTotalPrice()}</Typography>
+
+          <Button 
+            id="checkoutBtn" 
+            fullWidth
+            variant="contained"  
+            color='inherit'  
+            sx={{ py:1.5, backgroundColor:'secondary.dark', position:'absolute', bottom:0 }}
+            onClick={ handleCheckout }
+            >
+              CHECKOUT
+            </Button>
+
+          
         </Box>
       </Box>
       

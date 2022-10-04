@@ -14,7 +14,7 @@ export const HeroSection = () => {
                     -50% descuento
                 </Typography>
                 <Typography variant="subtitle1" component="h6" align="center" sx={{ width: '80%', margin:"auto", fontWeight:500, color:"#7a7582"}}>
-                    Para los departamenntos mencionados
+                    Para los departamentos mencionados
                 </Typography>
                 <Button variant='contained' size="large" color='info' sx={{ display:'flex', justifyContent:"center", margin:'auto', mt:4 }}>Ver los productos en oferta</Button>
             </Box>

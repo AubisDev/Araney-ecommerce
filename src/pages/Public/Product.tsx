@@ -8,21 +8,46 @@ import StarIcon from '@mui/icons-material/Star';
 import { useCounter } from "../../hooks/useCounter";
 import { addCartItem } from "../../redux/states/cart";
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+
 
 const Product = () => {
-  
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { amount, addOne, restOne } = useCounter(1);
   const [size, setSize] = useState('XS');
   const selectedItem  = useSelector( (store: AppStore) => store.product);
+  const user = useSelector( (store: AppStore) => store.user);
   const { price, description, category, image, rating, title } =  selectedItem;
 
   const handleAddItemToCart = ( itemAmount:number, size:string) => {
+    if( !user.username ){
+      Swal.fire({
+        title: 'You need to be Logged in',
+        text: "Do you want to log into you account?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff9800',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Take me to login page'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate( '/login')
+        }
+      })
+    }
+    Swal.fire(
+      'Item added to cart!',
+      'Added successfully',
+      'success'
+    )
     dispatch(  addCartItem({
       item: selectedItem,
       amount: itemAmount,
       size
     }))
+    
   }
 
   const handleSizeChange = ({ target }:React.ChangeEvent<HTMLInputElement>) => { setSize( target.value) }
@@ -59,8 +84,9 @@ const Product = () => {
                   aria-labelledby="row-radio-buttons-group-label"
                   name="radio-buttons-group"
                   sx={{ display:"flex", justifyContent:"center"}}
+                  defaultValue='XS'
                 >
-                  <FormControlLabel defaultChecked value="XS" control={<Radio color='default' />} label="XS" />
+                  <FormControlLabel value="XS" control={<Radio color='default' />} label="XS" />
                   <FormControlLabel value="S" control={<Radio color='default' />} label="S" />
                   <FormControlLabel value="M" control={<Radio color='default' />} label="M" />
                   <FormControlLabel value="L" control={<Radio color='default' />} label="L" />

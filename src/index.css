@@ -315,6 +315,11 @@ background-size: cover !important;
   margin-right: -25px;
 }
 
+
+#checkoutBtn:hover{
+  background-color: rgba(123,31,162,.8) !important;
+}
+
 /* .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 12px 14px !important;
 } */
