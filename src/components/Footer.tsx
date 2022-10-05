@@ -10,7 +10,7 @@ export const Footer = () => {
 
     const { storeData, aboutUsData, socials  } = getFooterData();
   return (
-        <Box sx={{ width: '100vw', minHeight:'40vh',height:"auto", mt:12, color:'inherit', background:'#0a1929'}}>
+        <Box sx={{ width: '100vw', minHeight:'40vh',height:"auto", mt:12, color:'inherit', background:'#0a1929', }}>
             <Box sx={{ width: '70%', display:'flex', flexDirection:'row', margin:'auto', p:3, justifyContent: 'space-evenly', borderBottom: '1px solid white' }}>
                 <Stack spacing={0} justifyContent="start" alignItems="start">
                     <Typography variant='h6' align="left" >

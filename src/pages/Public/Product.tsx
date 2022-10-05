@@ -22,6 +22,7 @@ const Product = () => {
   const { price, description, category, image, rating, title } =  selectedItem;
 
   const handleAddItemToCart = ( itemAmount:number, size:string) => {
+
     if( !user.username ){
       Swal.fire({
         title: 'You need to be Logged in',
@@ -37,12 +38,14 @@ const Product = () => {
         }
       })
     }
+
     Swal.fire(
       'Item added to cart!',
       'Added successfully',
       'success'
     )
-    dispatch(  addCartItem({
+
+    dispatch( addCartItem({
       item: selectedItem,
       amount: itemAmount,
       size
@@ -51,6 +54,7 @@ const Product = () => {
   }
 
   const handleSizeChange = ({ target }:React.ChangeEvent<HTMLInputElement>) => { setSize( target.value) }
+
     return (
     <Box sx={{ width: '100vw', height: '100vh', display:'flex', alignItems:"center"}}>
       <Box 

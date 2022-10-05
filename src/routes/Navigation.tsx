@@ -5,7 +5,7 @@ import { PublicRoutes, PrivateRoutes } from "../models";
 import { Navbar, Footer } from "../components";
 import {PrivateAuthGuard, PublicAuthGuard} from '../guard';
 
-const About= lazy( () => import('../pages/Public/About'));
+const About= lazy( () => import('../pages/Public/About/About'));
 const Category= lazy( () => import('../pages/Public/Category'));
 const Product= lazy( () => import('../pages/Public/Product'));
 const Login = lazy(() => import('../pages/Public/Login'));
