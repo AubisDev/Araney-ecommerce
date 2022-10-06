@@ -4,7 +4,8 @@ export const PublicRoutes = {
     HOME: 'home',
     ABOUT: 'about',
     CATEGORY: 'category',
-    PRODUCT: 'product'
+    PRODUCT: 'product',
+    INVENTORY: 'INVENTORY'
 };
 
 export const PrivateRoutes = {

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 interface FetchProps {
-  itemsAmount: number;
+  itemsAmount?: number;
   url:string;
 }
 

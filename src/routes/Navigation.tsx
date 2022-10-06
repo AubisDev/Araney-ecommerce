@@ -7,6 +7,7 @@ import {PrivateAuthGuard, PublicAuthGuard} from '../guard';
 
 const About= lazy( () => import('../pages/Public/About/About'));
 const Category= lazy( () => import('../pages/Public/Category'));
+const Inventory= lazy( () => import('../pages/Public/Inventory/Inventory'));
 const Product= lazy( () => import('../pages/Public/Product'));
 const Login = lazy(() => import('../pages/Public/Login'));
 const Register = lazy(() => import('../pages/Public/Register'));
@@ -24,6 +25,7 @@ export const Navigation = () => {
                     <Route path={PublicRoutes.ABOUT} element={ <About/>} />
                     <Route path={`${PublicRoutes.PRODUCT}/:productName/:productId`} element={ <Product/>} />
                     <Route path={`${PublicRoutes.CATEGORY}/:categoryName`} element={ <Category/>} />
+                    <Route path={`${PublicRoutes.INVENTORY}`} element={ <Inventory/>} />
                     <Route element={<PublicAuthGuard/>}>
                         <Route path={PublicRoutes.LOGIN} element={< Login/>} />
                         <Route path={PublicRoutes.REGISTER} element={< Register/>} />

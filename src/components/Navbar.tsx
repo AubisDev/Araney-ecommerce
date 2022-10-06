@@ -6,7 +6,7 @@ import { isUserChecked, userFirebaseLogout } from '../firebase';
 import { AppStore } from '../redux/store';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import logo from '../assets/araney-logo.png';
-import { PrivateRoutes } from '../models';
+import { PrivateRoutes, PublicRoutes } from '../models';
 
 export const Navbar = () =>{
   const { token, username } = useSelector( (store: AppStore) => store.user);
@@ -46,7 +46,7 @@ export const Navbar = () =>{
                   color="inherit" 
                   size="large" 
                   className="navButton"
-                  onClick={ () => navigate('/')}
+                  onClick={ () => navigate(`${PublicRoutes.HOME}`)}
                 >
                     Categories
                 </Button>
@@ -55,7 +55,16 @@ export const Navbar = () =>{
                   color="inherit" 
                   size="large" 
                   className="navButton"
-                  onClick={ () => navigate('/about')}
+                  onClick={ () => navigate(`${PublicRoutes.INVENTORY}`)}
+                >
+                    Inventory
+                </Button>
+
+                <Button  
+                  color="inherit" 
+                  size="large" 
+                  className="navButton"
+                  onClick={ () => navigate(`${PublicRoutes.ABOUT}`)}
                 >
                     About us
                 </Button>
