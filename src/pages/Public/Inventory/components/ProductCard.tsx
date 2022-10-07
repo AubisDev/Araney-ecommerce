@@ -1,30 +1,47 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { ProductInfo } from '../../../../models';
+import { ProductInfo, PublicRoutes } from '../../../../models';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Fab } from '@mui/material';
+import { takeSpacesOutFromString } from '../../../../utilities';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setSelectedProduct } from '../../../../redux/states/product';
 
 interface ProductCardProps{
     product:ProductInfo;
 }
 
-export function ProductCard({product}:ProductCardProps) {
+export function ProductCard({product }:ProductCardProps) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { image, price, title, } = product;
 
-    const { image,price, title, } = product;
+    const handleAddItemToCart = async() => {
+      const {id, title} = product;
+      const titleWithoutSpaces = takeSpacesOutFromString(title);
+      dispatch( setSelectedProduct(product));
+      navigate(`/${PublicRoutes.PRODUCT}/${titleWithoutSpaces}/${id}`);
+    } 
+    
   return (
-    <Card sx={{ maxWidth: 300, height:400, boxShadow:4, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
+    <Card 
+      className='productCard'
+      sx={{ maxWidth: 320, height:350, boxShadow:4, display:"flex", flexDirection:"column", justifyContent:"space-between", position:"relative", cursor:'pointer' }}
+      onClick ={() => handleAddItemToCart()}
+    >
       <CardMedia
         component="img"
         height={220}
         width='80%'
         image={image}
         alt={title}
-        sx={{  objectFit:"contain", }}
+        sx={{  objectFit:"contain", maxHeight:220}}
       />    
-      <CardContent>
+      <CardContent sx={{ height:100, display:"flex", flexDirection:"column", justifyContent:"center"}}>
         <Typography gutterBottom variant="h5" component="div">
           ${price}
         </Typography>
@@ -32,8 +49,15 @@ export function ProductCard({product}:ProductCardProps) {
           {title}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Add to cart</Button>
+      <CardActions sx={{ position:"absolute", top:0, right:0 }}>
+        <Fab 
+          aria-label="add" 
+          size="small" 
+          sx={{ color:"info.light", boxShadow:3, bgcolor:"white"}}
+          onClick ={() => handleAddItemToCart()}
+        >
+            <AddShoppingCartIcon />
+        </Fab>
       </CardActions>
     </Card>
   );

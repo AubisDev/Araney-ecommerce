@@ -8,8 +8,9 @@ import StarIcon from '@mui/icons-material/Star';
 import { useCounter } from "../../hooks/useCounter";
 import { addCartItem } from "../../redux/states/cart";
 import { useState } from 'react';
-import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { isUserIsLoggedIn, askUserIfWantLogInAlert, sucessAlert } from '../../utilities';
+import { PublicRoutes } from '../../models/routes';
 
 
 const Product = () => {
@@ -22,38 +23,20 @@ const Product = () => {
   const { price, description, category, image, rating, title } =  selectedItem;
 
   const handleAddItemToCart = ( itemAmount:number, size:string) => {
-
-    if( !user.username ){
-      Swal.fire({
-        title: 'You need to be Logged in',
-        text: "Do you want to log into you account?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#ff9800',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Take me to login page'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate( '/login')
-        }
-      })
-    }
-
-    Swal.fire(
-      'Item added to cart!',
-      'Added successfully',
-      'success'
-    )
-
-    dispatch( addCartItem({
-      item: selectedItem,
-      amount: itemAmount,
-      size
-    }))
-    
+    if ( !isUserIsLoggedIn( user.username )){
+      if ( askUserIfWantLogInAlert() ){
+        navigate(PublicRoutes.LOGIN);
+      }
+      sucessAlert();
+      dispatch( addCartItem({
+        item: selectedItem,
+        amount: itemAmount,
+        size
+      }))
+    }  
   }
 
-  const handleSizeChange = ({ target }:React.ChangeEvent<HTMLInputElement>) => { setSize( target.value) }
+  const handleSizeChange = ({ target }:React.ChangeEvent<HTMLInputElement>) => { setSize( target.value) };
 
     return (
     <Box sx={{ width: '100vw', height: '100vh', display:'flex', alignItems:"center"}}>
@@ -62,7 +45,7 @@ const Product = () => {
         sx={{ width: '60%', minHeight: '80%', height: '80%', margin:'auto', borderRadius:2, mt:12, display:"flex", flexDirection:'row'}}
       >
         <Box sx={{ width: '50%', minHeight: '100%', background:'white', position:"relative"}}>
-          <img src={image} alt={title} style={{ width:'80%', position:"absolute", top:0, bottom:0, left:0, right:0, margin: 'auto'}}  />
+          <img src={image} alt={title} style={{ width:'80%', maxHeight:"100%", position:"absolute", top:0, bottom:0, left:0, right:0, margin: 'auto'}}  />
         </Box>
 
         <Box 

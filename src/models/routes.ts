@@ -5,7 +5,7 @@ export const PublicRoutes = {
     ABOUT: 'about',
     CATEGORY: 'category',
     PRODUCT: 'product',
-    INVENTORY: 'INVENTORY'
+    INVENTORY: 'products'
 };
 
 export const PrivateRoutes = {

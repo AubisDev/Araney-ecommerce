@@ -18,9 +18,9 @@ export const FeaturedProducts = () => {
 
     const handleProductClick = (featProduct:ProductInfo) => {
         const { title, id } = featProduct;
+        const titleWithoutSpaces = title?.replaceAll(' ','-');
         dispatch( setSelectedProduct(featProduct));
-        navigate(`/${PublicRoutes.PRODUCT}/${title?.replaceAll(' ','-')}/${id}`)
-        
+        navigate(`/${PublicRoutes.PRODUCT}/${titleWithoutSpaces}/${id}`)
     }
 
     return (

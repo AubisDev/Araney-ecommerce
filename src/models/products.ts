@@ -8,7 +8,7 @@ export interface ProductInfo{
     rating: {
         rate: number
     };
-    title?: string;
+    title: string;
     itemsQuantity: number;
     
 }

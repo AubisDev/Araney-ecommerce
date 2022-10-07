@@ -1,22 +1,20 @@
-import { useState } from 'react';
-import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
-import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Pagination, Stack } from '@mui/material';
-import { DraftsOutlined, SendOutlined, InboxOutlined } from '@mui/icons-material';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useFetch } from '../../../hooks';
+import { ProductInfo } from '../../../models';
+import { usePagination} from '../../../hooks/usePagination';
+import { Box, Button, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Pagination, Stack } from '@mui/material';
+import ProductCard from './components/ProductCard';
 import ManIcon from '@mui/icons-material/Man';
 import WomanIcon from '@mui/icons-material/Woman';
 import ChairIcon from '@mui/icons-material/Chair';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import ToysIcon from '@mui/icons-material/Toys';
 import DiamondIcon from '@mui/icons-material/Diamond';
-import { useFetch } from '../../../hooks';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { ProductInfo } from '../../../models';
-import ProductCard from './components/ProductCard';
-import { usePagination} from '../../../hooks/usePagination';
 
 
-const Inventory = () => {
+const Inventory = (category: string) => {
     
     const url = 'https://fakestoreapi.com/products';
     const { data: allProducts } = useFetch({url});
@@ -24,17 +22,14 @@ const Inventory = () => {
     const itemsPerPage:number = 12;
     const { jumpToPage, currentData } = usePagination(allProducts , itemsPerPage );
     const count = Math.ceil( Object.values(allProducts).length/itemsPerPage )
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
-    const [open, setOpen] = useState({
-        men: false,
-        women: false,
-        furnitures: false,
-        kids: false,
-        school: false,
-        tecnology:false
-    });
+    const [filteredProducts, setFilteredProducts] = useState(currentData());
+
+    const filterProductsBy = (filter:string) => {
+        const newFilteredProductState: ProductInfo[] = filteredProducts.filter( (product: ProductInfo) => product.category === filter)
+        setFilteredProducts( newFilteredProductState );
+    }
+    
 
     //!Refactorizar ya que se usa aqui y en checkout
     const handlePageJump = ( e:React.ChangeEvent<any> , page:number ) => {
@@ -51,16 +46,18 @@ const Inventory = () => {
                 aria-labelledby="nested-list-subheader"
                 subheader={
                 <ListSubheader component="div" id="nested-list-subheader" sx={{ textAlign:"center", fontSize:"1.05rem"}}>
-                Filter your products by category
+                    Filter products by
                 </ListSubheader>
             }
             >
-                <ListItemButton sx={{ pl:5 }}>
+
+                <ListItemButton sx={{ pl:5 }} >
                     <ListItemIcon>
                         <ManIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Men"/>
                 </ListItemButton>
+               
                 <ListItemButton sx={{ pl:5 }}>
                     <ListItemIcon>
                         <WomanIcon/>
@@ -97,7 +94,7 @@ const Inventory = () => {
 
         <Box sx={{ width:'80%', height:"100%", bgcolor:"rgba(255,255,255,.65)", display:"grid", gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap:3}}>
             {
-                currentData().map((product:ProductInfo) => (
+                filteredProducts.map((product:ProductInfo) => (
                     <ProductCard key={ product.id } product={product} />
                 ))
             }

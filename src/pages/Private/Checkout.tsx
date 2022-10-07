@@ -57,7 +57,7 @@ export const Checkout = () => {
   return (
     <Box sx={{ width: '100vw', height: '100vh', display:'flex', alignItems:"center"}}>
       <Box 
-        sx={{ width: '90%', minHeight: '80%', height: '80%', margin:'auto', mt:12, display:"flex", flexDirection:'', justifyContent:"space-between"}}
+        sx={{ width: '90%', minHeight: '80%', height: '80%', margin:'auto', mt:4, display:"flex", flexDirection:'', justifyContent:"space-between"}}
       >``
         <Box 
           sx={{ width: '75%', maxHeight:'100%', position: 'relative', display:"flex", flexDirection:'column', border:2, borderColor:'gray', background: '#fff', boxShadow:4}}
