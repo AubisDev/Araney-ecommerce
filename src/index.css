@@ -245,6 +245,16 @@ background-attachment: fixed !important;
 background-size: cover !important;
 }
 
+.productDetails{
+  width: 50% !important;
+  min-height: 100% !important;
+  position: relative !important;
+  color:"white" !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-evenly !important;
+}
+
 .amountBtn{
   min-width: 40px !important;
   padding: 6px !important;

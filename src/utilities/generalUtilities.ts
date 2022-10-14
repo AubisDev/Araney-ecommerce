@@ -24,8 +24,11 @@ export const askUserIfWantLogInAlert = () => {
         if (result.isConfirmed) {
             return true
         }
+        else{
+            return false
+        }
       })
-      return false;
+
 }
 
 export const sucessAlert = () => {

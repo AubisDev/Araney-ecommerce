@@ -6,7 +6,7 @@ import { Navbar, Footer } from "../components";
 import {PrivateAuthGuard, PublicAuthGuard} from '../guard';
 
 const About= lazy( () => import('../pages/Public/About/About'));
-const Product= lazy( () => import('../pages/Public/Product'));
+const Product= lazy( () => import('../pages/Public/Product/Product'));
 const Login = lazy(() => import('../pages/Public/Login/Login'));
 const Inventory = lazy(() => import('../pages/Public/Inventory/Inventory'));
 const Register = lazy(() => import('../pages/Public/Register/Register'));
