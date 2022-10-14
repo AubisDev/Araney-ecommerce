@@ -26,6 +26,7 @@ export function ProductCard({product }:ProductCardProps) {
       dispatch( setSelectedProduct(product));
       navigate(`/${PublicRoutes.PRODUCT}/${titleWithoutSpaces}/${id}`);
     } 
+
     
   return (
     <Card 
