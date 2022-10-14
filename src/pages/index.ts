@@ -1,4 +1,4 @@
-export { default as Checkout } from './Private/Checkout';
+export { default as Checkout } from './Private/Checkout/Checkout';
 export { default as Home } from './Public/Home/Home';
 export * from './Public/Home/components';
 export * from './Public/Home/data/categories.data';

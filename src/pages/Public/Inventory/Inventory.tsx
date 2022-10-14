@@ -29,7 +29,7 @@ const Inventory = () => {
         <MenuList/>
         <FilteredProducts products={currentData()}/>
         <PaginationComponent  
-            count={getCount(allProducts)}
+            count={getCount(allProducts, inventoryItemsPerPage)}
             page={page} 
             handlePageJump={(event) => handlePageJump({ event, page, setPage, jumpToPage })}
         />

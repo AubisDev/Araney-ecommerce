@@ -7,12 +7,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isUserIsLoggedIn, askUserIfWantLogInAlert, sucessAlert } from '../../../utilities';
 import { PublicRoutes } from '../../../models/routes';
-import ProductOptions from './components/ProductOptions';
-import ProductImage from './components/ProductImage';
-import ProductDetails from './components/ProductDetails';
-import SizeOptions from './components/SizeOptions';
-import AddToCartButton from './components/AddToCartButton';
-
+import { ProductOptions, ProductImage, ProductDetails, SizeOptions, AddToCartButton} from './components';
 
 const Product = () => {
   const navigate = useNavigate();
