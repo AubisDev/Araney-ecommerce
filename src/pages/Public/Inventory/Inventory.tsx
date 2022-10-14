@@ -11,7 +11,7 @@ import { handlePageJump } from '../../../utilities/paginationUtils';
 
 
 
-const Inventory = (category: string) => {
+const Inventory = () => {
     
     const [page, setPage] = useState<number>(1);
     const { data: allProducts } = useFetch({url});
