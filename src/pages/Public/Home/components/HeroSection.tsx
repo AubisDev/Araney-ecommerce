@@ -1,5 +1,5 @@
 import { Typography, Button, Box } from '@mui/material';
-import HeroSectionImage from '../../../../assets/HeroImage.jpg'
+import HeroSectionImage from '../../../../assets/HeroImage.webp'
 
 export const HeroSection = () => {
   return (

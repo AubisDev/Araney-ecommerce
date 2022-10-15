@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { isUserChecked, userFirebaseLogout } from '../firebase';
 import { AppStore } from '../redux/store';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import logo from '../assets/araney-logo.png';
+import logo from '../assets/araney-logo.webp';
 import { PrivateRoutes, PublicRoutes } from '../models';
 
 export const Navbar = () =>{

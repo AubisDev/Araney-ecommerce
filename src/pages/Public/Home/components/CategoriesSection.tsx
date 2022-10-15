@@ -1,4 +1,4 @@
-import { Typography, Button, Box, Grid } from '@mui/material';
+import { Typography, Box, Grid } from '@mui/material';
 import { categoriesData, CategoriesData } from '../data/categories.data';
 
 
