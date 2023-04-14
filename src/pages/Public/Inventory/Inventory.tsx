@@ -1,33 +1,26 @@
-import { useState } from "react";
-import { useFetch } from "../../../hooks";
-import { ProductInfo } from "../../../models";
+import { useEffect, useState } from "react";
 import { usePagination } from "../../../hooks/usePagination";
 import { Box } from "@mui/material";
-import FilteredProducts from "./components/FilteredProducts";
 import MenuList from "./components/MenuList";
 import PaginationComponent from "../../../components/PaginationComponent";
-import {
-  getCount,
-  inventoryItemsPerPage,
-  inventoryUrl as url,
-} from "./utilities/paginationUtils";
-import { handlePageJump } from "../../../utilities/paginationUtils";
+import { getCount, inventoryItemsPerPage } from "./utilities/paginationUtils";
+import { getAllProducts } from "../../../services/products.service";
+import ProductList from "./components/ProductList";
+import { Product } from "../../../models";
 
-const Inventory = () => {
-  const [page, setPage] = useState<number>(1);
-  const { data: allProducts } = useFetch({ url });
-  const { jumpToPage, currentData } = usePagination(
-    allProducts,
+function Inventory() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const { currentPage, jumpToPage, getPageData } = usePagination(
+    products,
     inventoryItemsPerPage
   );
-  const [filteredProducts, setFilteredProducts] = useState(currentData());
 
-  const filterProductsBy = (filter: string) => {
-    const newFilteredProductState: ProductInfo[] = filteredProducts.filter(
-      (product: ProductInfo) => product.category === filter
-    );
-    setFilteredProducts(newFilteredProductState);
-  };
+  useEffect(() => {
+    (async () => {
+      let data = await getAllProducts();
+      setProducts(data);
+    })();
+  }, []);
 
   return (
     <Box
@@ -43,15 +36,13 @@ const Inventory = () => {
       }}
     >
       <MenuList />
-      <FilteredProducts products={currentData()} />
+      <ProductList products={getPageData()} />
       <PaginationComponent
-        count={getCount(allProducts, inventoryItemsPerPage)}
-        page={page}
-        handlePageJump={(event) =>
-          handlePageJump({ event, page, setPage, jumpToPage })
-        }
+        count={getCount(products, inventoryItemsPerPage)}
+        page={currentPage}
+        jumpToPage={jumpToPage}
       />
     </Box>
   );
-};
+}
 export default Inventory;

@@ -1,24 +1,39 @@
-import { Pagination, Stack } from "@mui/material"
+import { Pagination, Stack } from "@mui/material";
 
-interface PaginationProps{
-    count: number;
-    page: number;
-    handlePageJump: ( e:React.ChangeEvent<any> , page:number ) => void;
+interface PaginationProps {
+  count: number;
+  page: number;
+  jumpToPage: (page: number) => void;
 }
 
-const PaginationComponent = ({count, page, handlePageJump}:PaginationProps) => {
+const PaginationComponent = ({ count, page, jumpToPage }: PaginationProps) => {
+  const handlePageJump = (evt: React.ChangeEvent<unknown>, page: number) => {
+    jumpToPage(page);
+    window.scroll(0, 0);
+  };
   return (
-    <Stack spacing={2} sx={{height:"32px", width:"100%", position:"absolute", bottom:10, display:"flex", justifyContent:"center", alignItems:"center",}}>
-        <Pagination  
+    <Stack
+      spacing={2}
+      sx={{
+        height: "32px",
+        width: "100%",
+        position: "absolute",
+        bottom: 10,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Pagination
         count={count}
-        color="primary" 
-        size='large'
+        color="primary"
+        size="large"
         shape="rounded"
         variant="outlined"
-        page={ page }
-        onChange={ handlePageJump }
-        />
+        page={page}
+        onChange={(evt) => handlePageJump(evt, Number(evt.target.innerText))}
+      />
     </Stack>
-  )
-}
-export default PaginationComponent
+  );
+};
+export default PaginationComponent;
