@@ -34,7 +34,7 @@ function Inventory() {
         width: "90vw",
         height: "auto",
         margin: "auto",
-        mt: 12,
+        mt: 6,
         display: "flex",
         flexDirection: "row",
         position: "relative",

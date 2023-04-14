@@ -30,7 +30,19 @@ export const Navbar = () => {
 
   const handleLogout = () => userFirebaseLogout({ dispatch });
 
-  const handleCartClick = () => navigate(`/${PrivateRoutes.CHECKOUT}`);
+  const handleCartClick = () => {
+    window.scroll(0, 0);
+    navigate(`/${PrivateRoutes.CHECKOUT}`);
+  };
+
+  const handleCategoriesClick = () => {
+    navigate(`${PublicRoutes.HOME}`, { replace: true });
+    setTimeout(() => {
+      document
+        .getElementById("categories")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 500);
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -47,7 +59,10 @@ export const Navbar = () => {
               alignItems: "center",
               cursor: "pointer",
             }}
-            onClick={() => navigate("/")}
+            onClick={() => {
+              window.scroll(0, 0);
+              navigate("/");
+            }}
           >
             <img src={logo} alt="araney logo" className="logo" />
             <Typography
@@ -85,11 +100,7 @@ export const Navbar = () => {
                 color="inherit"
                 size="large"
                 className="navButton"
-                onClick={() =>
-                  document
-                    .getElementById("categories")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={handleCategoriesClick}
               >
                 Categories
               </Button>
@@ -98,7 +109,9 @@ export const Navbar = () => {
                 color="inherit"
                 size="large"
                 className="navButton"
-                onClick={() => navigate(`${PublicRoutes.INVENTORY}`)}
+                onClick={() => {
+                  navigate(`${PublicRoutes.INVENTORY}`);
+                }}
               >
                 Inventory
               </Button>
@@ -107,7 +120,10 @@ export const Navbar = () => {
                 color="inherit"
                 size="large"
                 className="navButton"
-                onClick={() => navigate(`${PublicRoutes.ABOUT}`)}
+                onClick={() => {
+                  window.scroll(0, 0);
+                  navigate(`${PublicRoutes.ABOUT}`);
+                }}
               >
                 About us
               </Button>

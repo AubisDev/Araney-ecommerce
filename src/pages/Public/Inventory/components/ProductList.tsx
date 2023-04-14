@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Product } from "../../../../models/products";
 import ProductCard from "./ProductCard";
 
@@ -18,9 +18,35 @@ const ProductList = ({ products }: ProductListProps) => {
         gap: 3,
       }}
     >
-      {products.map((product: Product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      {products.length !== 0 ? (
+        products.map((product: Product) => (
+          <ProductCard key={product.id} product={product} />
+        ))
+      ) : (
+        <Box
+          width="70vw"
+          height="70vh"
+          bgcolor="rgba(255,255,255)"
+          border="2px solid rgba(255,152,0,0.4)"
+        >
+          <Typography
+            variant="h5"
+            sx={{
+              color: "#ff9800",
+              textAlign: "center",
+              width: "100%",
+              height: "100%",
+              margin: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {" "}
+            There are no items to show right now{" "}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };
