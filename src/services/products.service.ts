@@ -15,7 +15,9 @@ export const getAllProducts = async () => {
 //   return products.slice(amount);
 // };
 
-export const filterProductsByCategory = async (category: string) => {
-  let products: Product[] = await axios.get(productsURL);
-  return products.map((product: Product) => product.category === category);
+export const getProductsByCategory = async (category: string) => {
+  let products: Product[] = await getAllProducts();
+  return products.filter((product: Product) =>
+    product.category.includes(category)
+  );
 };

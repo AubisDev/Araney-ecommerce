@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 export const CategoriesSection = () => {
   const navigate = useNavigate();
   const handleShowProducts = (categoryName: string) => {
+    window.scroll(0, 0);
     navigate(`${PublicRoutes.INVENTORY}/${categoryName.toLowerCase()}`, {
       replace: true,
     });

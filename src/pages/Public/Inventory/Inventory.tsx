@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { usePagination } from "../../../hooks/usePagination";
+import { usePagination } from "../../../hooks";
 import { Box } from "@mui/material";
-import MenuList from "./components/MenuList";
-import PaginationComponent from "../../../components/PaginationComponent";
-import { getCount, inventoryItemsPerPage } from "./utilities/paginationUtils";
-import { getAllProducts } from "../../../services/products.service";
-import ProductList from "./components/ProductList";
+import { MenuList, ProductList } from "./components";
+import { PaginationComponent } from "../../../components/PaginationComponent";
+import { getCount, inventoryItemsPerPage } from "./utilities";
+import { getAllProducts, getProductsByCategory } from "../../../services";
 import { Product } from "../../../models";
+import { useParams } from "react-router-dom";
 
 function Inventory() {
+  let { category } = useParams();
   const [products, setProducts] = useState<Product[]>([]);
   const { currentPage, jumpToPage, getPageData } = usePagination(
     products,
@@ -17,10 +18,15 @@ function Inventory() {
 
   useEffect(() => {
     (async () => {
-      let data = await getAllProducts();
+      let data;
+      if (category) {
+        data = await getProductsByCategory(category);
+      } else {
+        data = await getAllProducts();
+      }
       setProducts(data);
     })();
-  }, []);
+  }, [category]);
 
   return (
     <Box

@@ -6,7 +6,11 @@ interface PaginationProps {
   jumpToPage: (page: number) => void;
 }
 
-const PaginationComponent = ({ count, page, jumpToPage }: PaginationProps) => {
+export const PaginationComponent = ({
+  count,
+  page,
+  jumpToPage,
+}: PaginationProps) => {
   const handlePageJump = (evt: React.ChangeEvent<unknown>, page: number) => {
     jumpToPage(page);
     window.scroll(0, 0);
