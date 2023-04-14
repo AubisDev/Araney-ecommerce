@@ -1,13 +1,12 @@
 export const PublicRoutes = {
-    LOGIN: 'login',
-    REGISTER: 'register',
-    HOME: 'home',
-    ABOUT: 'about',
-    CATEGORY: 'category',
-    PRODUCT: 'product',
-    INVENTORY: 'products'
+  LOGIN: "login",
+  REGISTER: "register",
+  HOME: "/",
+  ABOUT: "about",
+  PRODUCT: "product",
+  INVENTORY: "inventory",
 };
 
 export const PrivateRoutes = {
-  CHECKOUT: 'checkout',
+  CHECKOUT: "checkout",
 };

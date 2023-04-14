@@ -1,7 +1,16 @@
-import { Typography, Box, Grid } from "@mui/material";
+import { Typography, Box, Grid, Button } from "@mui/material";
 import { categoriesData, ICategoriesData } from "../data";
+import { PublicRoutes } from "../../../../models";
+import { Link, useNavigate } from "react-router-dom";
 
 export const CategoriesSection = () => {
+  const navigate = useNavigate();
+  const handleShowProducts = (categoryName: string) => {
+    navigate(`${PublicRoutes.INVENTORY}/${categoryName.toLowerCase()}`, {
+      replace: true,
+    });
+  };
+
   return (
     <Box
       sx={{
@@ -13,6 +22,7 @@ export const CategoriesSection = () => {
       }}
     >
       <Box
+        id="categories"
         sx={{
           width: "80%",
           display: "flex",
@@ -33,7 +43,10 @@ export const CategoriesSection = () => {
           {categoriesData.map(
             ({ id, categoryName, image, description }: ICategoriesData) => (
               <Grid key={id} item xs={6} lg={4} className="category">
-                <Box className="categoryItem">
+                <Button
+                  className="categoryItem"
+                  onClick={() => handleShowProducts(categoryName)}
+                >
                   <img
                     src={image}
                     alt={categoryName}
@@ -62,7 +75,7 @@ export const CategoriesSection = () => {
                     </Typography>
                   </Typography>
                   <div className="curl"></div>
-                </Box>
+                </Button>
               </Grid>
             )
           )}
