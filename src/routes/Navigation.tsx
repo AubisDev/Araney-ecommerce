@@ -2,9 +2,10 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Navigate } from "react-router-dom";
 import { RoutesWithNotFound } from "../utilities";
 import { PublicRoutes, PrivateRoutes } from "../models";
-import { Navbar, Footer } from "../components";
+import { Footer } from "../components";
 import { PrivateAuthGuard, PublicAuthGuard } from "../guard";
 import { Home } from "../pages";
+import { Navbar } from "../components/Navbar/Navbar";
 
 const About = lazy(() => import("../pages/Public/About/About"));
 const Product = lazy(() => import("../pages/Public/Product/Product"));

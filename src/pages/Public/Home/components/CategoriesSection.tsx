@@ -25,7 +25,7 @@ export const CategoriesSection = () => {
       <Box
         id="categories"
         sx={{
-          width: "80%",
+          width: { xs: "90%", md: "80%" },
           display: "flex",
           flexDirection: "column",
           margin: "auto",
@@ -33,49 +33,68 @@ export const CategoriesSection = () => {
       >
         <Typography
           variant="h4"
-          align="left"
-          component="h3"
-          sx={{ py: 2, borderBottom: "2px solid rgba(148,148,148,.25)" }}
+          component="h4"
+          sx={{
+            py: 2,
+            borderBottom: "2px solid rgba(148,148,148,.25)",
+            textAlign: { xs: "center", sm: "left" },
+          }}
         >
           Check our categories
         </Typography>
 
-        <Grid container direction="row" spacing={5} sx={{ p: 3 }}>
+        <Grid container direction="row" spacing={5} sx={{ p: 5 }}>
           {categoriesData.map(
             ({ id, categoryName, image, description }: ICategoriesData) => (
-              <Grid key={id} item xs={6} lg={4} className="category">
-                <Button
-                  className="categoryItem"
-                  onClick={() => handleShowProducts(categoryName)}
-                >
-                  <img
-                    src={image}
+              <Grid
+                key={id}
+                item
+                xs={6}
+                sm={4}
+                className="category"
+                sx={{
+                  height: { xs: "275px", md: "auto" },
+                  width: { xs: "150px", md: "auto" },
+                  p: 0,
+                }}
+              >
+                <Button onClick={() => handleShowProducts(categoryName)}>
+                  <Box
+                    component="img"
                     alt={categoryName}
-                    style={{
+                    sx={{
                       objectFit: "cover",
-                      width: "100%",
-                      height: "500px",
+                      width: { xs: "600px", md: "100%" },
+                      height: { xs: "300px", md: "500px" },
                       position: "relative",
                     }}
-                  />
+                    src={image}
+                  ></Box>
                   <Typography
-                    variant="h4"
+                    sx={{
+                      fontSize: { xs: "0.8rem", md: "1.4rem" },
+                      color: "white",
+                      zIndex: 100,
+                    }}
                     align="center"
                     component="h4"
                     className="centerElement"
                   >
                     {categoryName}
                     <Typography
-                      variant="subtitle1"
                       align="center"
                       component="span"
-                      className="centerElement"
-                      sx={{ width: "70%" }}
+                      className="centerElement categoryDescription"
+                      sx={{
+                        width: { xs: "80%", sm: "70%" },
+                        fontSize: { md: "1rem", sm: "0.6rem", xs: "0.5rem" },
+                        zIndex: 100,
+                        color: "white",
+                      }}
                     >
                       {description}
                     </Typography>
                   </Typography>
-                  <div className="curl"></div>
                 </Button>
               </Grid>
             )

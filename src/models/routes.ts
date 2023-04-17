@@ -1,7 +1,7 @@
 export const PublicRoutes = {
   LOGIN: "login",
   REGISTER: "register",
-  HOME: "/",
+  HOME: "",
   ABOUT: "about",
   PRODUCT: "product",
   INVENTORY: "inventory",

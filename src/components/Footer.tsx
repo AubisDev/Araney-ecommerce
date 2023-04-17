@@ -27,38 +27,70 @@ export const Footer = () => {
           p: 3,
           justifyContent: "space-evenly",
           borderBottom: "1px solid white",
+          fontSize: { xs: 18, sm: 22 },
         }}
       >
         <Stack spacing={0} justifyContent="start" alignItems="start">
-          <Typography variant="h6" align="left">
+          <Typography
+            variant="h6"
+            sx={{ fontSize: { xs: 16, sm: 18, md: 20, lg: 22 } }}
+          >
             Store
           </Typography>
           {storeData.map((data: string) => (
-            <Button key={data} sx={{ fontFamily: "Roboto", color: "inherit" }}>
+            <Button
+              key={data}
+              sx={{
+                fontFamily: "Roboto",
+                color: "inherit",
+                fontSize: { xs: 10, sm: 12, md: 14 },
+                textAlign: "left",
+              }}
+            >
               {data}
             </Button>
           ))}
         </Stack>
 
-        <Stack spacing={0} justifyContent="start" alignItems="start">
-          <Typography variant="h6" align="left">
+        <Stack spacing={0} justifyContent="left" alignItems="start">
+          <Typography
+            variant="h6"
+            align="left"
+            sx={{ fontSize: { xs: 16, sm: 18, md: 20, lg: 22 } }}
+          >
             About us
           </Typography>
           {aboutUsData.map((data: string) => (
-            <Button key={data} sx={{ fontFamily: "Roboto", color: "inherit" }}>
+            <Button
+              key={data}
+              sx={{
+                fontFamily: "Roboto",
+                color: "inherit",
+                fontSize: { xs: 10, sm: 12, md: 14 },
+                textAlign: "left",
+              }}
+            >
               {data}
             </Button>
           ))}
         </Stack>
 
         <Stack spacing={0} justifyContent="start" alignItems="start">
-          <Typography variant="h6" align="left">
+          <Typography
+            variant="h6"
+            align="left"
+            sx={{ fontSize: { xs: 16, sm: 18, md: 20, lg: 22 } }}
+          >
             Socials
           </Typography>
           {socials.map((social) => (
             <Button
               key={social}
-              sx={{ fontFamily: "Roboto", color: "inherit" }}
+              sx={{
+                fontFamily: "Roboto",
+                color: "inherit",
+                fontSize: { xs: 10, sm: 12, md: 14 },
+              }}
             >
               {social === "Instagram" ? (
                 <InstagramIcon />

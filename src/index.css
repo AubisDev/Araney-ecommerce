@@ -80,11 +80,9 @@ h1 {
   width: 100%;
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
-}
-
-.category:hover img{
   filter:brightness(50%)
 }
+
 
 .category > .categoryItem {
   position: absolute;
@@ -113,12 +111,12 @@ h1 {
   font-weight: 400;
   text-transform: uppercase;
   top: 0;
-  opacity: 0;
+  opacity: 1;
   padding: 25px;
   margin: 0;
   position: absolute;
   color: transparent;
-  text-shadow: 0 0 10px #ffffff;
+  text-shadow: 0 0 1px #ffffff;
   text-align: right;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
@@ -128,7 +126,7 @@ h1 {
 
 .categoryItem{
   position: relative !important;
-  height: 500px !important;
+  height: 500px;
   transition: 0.3s;
 }
 .category i {
@@ -146,73 +144,25 @@ h1 {
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-.category .curl {
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(225deg, #ffffff, #f3f3f3 20%, #bbbbbb 38%, #aaaaaa 44%, #888888 50%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.3)) !important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transition: all .4s ease;
-}
-.category .curl:before,
-.category .curl:after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  left: 12%;
-  bottom: 6%;
+
+
+.categoryDescription{
   width: 70%;
-  max-width: 300px;
-  max-height: 100px;
-  height: 55%;
-  box-shadow: 0 12px 15px rgba(0, 0, 0, 0.3) !important;
-  transform: skew(-10deg) rotate(-6deg);
-}
-.category .curl:after {
-  left: auto;
-  right: 6%;
-  bottom: auto;
-  top: 14%;
-  transform: skew(-15deg) rotate(-84deg);
+  z-index: 100;
+  color: white;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
 }
 
-.category a {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  color: #ffffff;
-}
-.category:hover > .categoryItem h4,
-.category.hover > .categoryItem h4 {
+.category:hover span{
   opacity: 1;
-  text-shadow: 0 0 0px #ffffff;
+  display:block;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-.category:hover > .categoryItem ::before,
-.category.hover > .categoryItem ::before {
-  opacity: 1;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-}
-.category:hover i,
-.category.hover i {
-  opacity: 0.7;
-  -webkit-transition-delay: 0.15s;
-  transition-delay: 0.15s;
-}
-.category:hover .curl,
-.category.hover .curl {
-  width: 90px;
-  height: 90px;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-}
-
 
 
 
