@@ -12,7 +12,7 @@ const LoginForm = () => {
   return (
     <Box
       sx={{
-        width: "70%",
+        width: { sx: "90%", sm: "70%" },
         margin: "auto",
       }}
     >
@@ -27,7 +27,12 @@ const LoginForm = () => {
         validationSchema={loginValidationSchema}
       >
         <Form>
-          <TextInput label="Email" name="email" placeholder="Email" />
+          <TextInput
+            label="Email"
+            name="email"
+            placeholder="Email"
+            sx={{ width: "100%" }}
+          />
 
           <TextInput
             label="Password"

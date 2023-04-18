@@ -14,7 +14,7 @@ export const Login = () => {
     >
       <Box
         sx={{
-          width: "35%",
+          width: { xs: "60%", sm: "50%", md: "25%" },
           display: "flex",
           flexDirection: "column",
           margin: "auto",
