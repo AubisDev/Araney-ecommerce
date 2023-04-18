@@ -10,12 +10,19 @@ const ProductList = ({ products }: ProductListProps) => {
   return (
     <Box
       sx={{
-        width: "80%",
+        width: { xs: "90%", md: "80%" },
         height: "100%",
         bgcolor: "rgba(255,255,255,.65)",
         display: "grid",
-        gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-        gap: 3,
+        gridTemplateColumns: {
+          xs: "repeat(2, minmax(0, 1fr))",
+          sm: "repeat(3, minmax(0, 1fr))",
+          md: "repeat(4, minmax(0, 1fr))",
+        },
+        gap: { xs: 1, md: 3 },
+        mx: { xs: "auto", md: 0 },
+        mt: { xs: "1em", md: 0 },
+        ml: { xs: "auto", md: "2em" },
       }}
     >
       {products.length !== 0 ? (
@@ -42,8 +49,7 @@ const ProductList = ({ products }: ProductListProps) => {
               justifyContent: "center",
             }}
           >
-            {" "}
-            There are no items to show right now{" "}
+            There are no items to show right now
           </Typography>
         </Box>
       )}

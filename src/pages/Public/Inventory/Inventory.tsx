@@ -36,7 +36,7 @@ function Inventory() {
         margin: "auto",
         mt: 6,
         display: "flex",
-        flexDirection: "row",
+        flexDirection: { xs: "column", md: "row" },
         position: "relative",
         py: 12,
       }}
