@@ -54,7 +54,7 @@ const NavMenu = () => {
         orientation="vertical"
         variant="middle"
         flexItem
-        sx={{ mx: -8, backgroundColor: "white" }}
+        sx={{ mx: 0, backgroundColor: "white" }}
       />
       <UserNav />
     </>

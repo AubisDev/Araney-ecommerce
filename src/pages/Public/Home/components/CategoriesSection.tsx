@@ -25,7 +25,7 @@ export const CategoriesSection = () => {
       <Box
         id="categories"
         sx={{
-          width: { xs: "90%", md: "80%" },
+          width: { xs: "100%", md: "80%" },
           display: "flex",
           flexDirection: "column",
           margin: "auto",

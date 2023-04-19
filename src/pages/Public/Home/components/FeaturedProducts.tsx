@@ -33,14 +33,14 @@ export const FeaturedProducts = () => {
     >
       <Box
         sx={{
-          width: { xs: "90%", sm: "80%" },
+          width: { xs: "100%", sm: "80%" },
           display: "flex",
           flexDirection: "column",
           margin: "auto",
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           align="left"
           component="h3"
           sx={{

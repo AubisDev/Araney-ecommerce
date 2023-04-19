@@ -6,7 +6,7 @@ export const HeroSection = () => {
     <Box sx={{ width: "100vw", height: "70vh", display: "flex", mt: 15 }}>
       <Box
         sx={{
-          width: "90%",
+          width: { xs: "100%", md: "90%" },
           height: "100%",
           display: "flex",
           margin: "auto",
@@ -17,7 +17,12 @@ export const HeroSection = () => {
         <img
           src={HeroSectionImage}
           alt="Hero Image"
-          style={{ objectFit: "cover", width: "100%" }}
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            overflow: "hidden",
+            objectPosition: "center",
+          }}
         />
         <Box
           sx={{
@@ -27,7 +32,7 @@ export const HeroSection = () => {
             top: 0,
             bottom: 0,
             margin: "auto auto",
-            width: "550px",
+            width: { xs: "100%", md: "550px" },
             height: "440px",
           }}
         >
@@ -50,6 +55,7 @@ export const HeroSection = () => {
               pt: 2,
               fontWeight: 700,
               color: "secondary.dark",
+              fontSize: { xs: "3rem", md: "3.2rem", lg: "3.75rem" },
             }}
           >
             -50% discount
