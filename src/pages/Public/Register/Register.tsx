@@ -10,16 +10,17 @@ export const Register = () => {
     <Box
       sx={{
         width: "100vw",
-        height: "85vh",
+        height: "auto",
+        minHeight: "80vh",
         color: "warning.dark",
-        mt: 12,
+        mt: 15,
         position: "relative",
       }}
     >
       <Box
         sx={{
-          width: "35%",
-          height: "auto",
+          width: { xs: "60%", sm: "50%", md: "25%" },
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           margin: "auto",
@@ -32,7 +33,7 @@ export const Register = () => {
       >
         <RegisterFormTopMessages />
         <RegisterForm />
-        <Divider sx={{ py: 3 }}>OR</Divider>
+        <Divider sx={{ py: { xs: 2, md: 3 } }}>OR</Divider>
         <GoogleSignUpButton />
       </Box>
     </Box>
