@@ -35,7 +35,9 @@ export const PaginationComponent = ({
         shape="rounded"
         variant="outlined"
         page={page}
-        onChange={(evt) => handlePageJump(evt, Number(evt.target.innerText))}
+        onChange={(evt: React.ChangeEvent<any>) =>
+          handlePageJump(evt, Number(evt.target.innerText))
+        }
       />
     </Stack>
   );

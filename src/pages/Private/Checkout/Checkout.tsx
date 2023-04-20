@@ -9,10 +9,11 @@ import {
   CheckoutDetailsTitles,
   CheckoutPagination,
 } from "./components";
+import { CartInfo } from "../../../models";
 
 export const Checkout = () => {
-  const cartState = useSelector((store: AppStore) => store.cart);
-  const { jumpToPage, currentData } = usePagination(
+  const cartState: CartInfo[] = useSelector((store: AppStore) => store.cart);
+  const { jumpToPage, getPageData } = usePagination(
     cartState,
     CheckoutItemPerPage
   );
@@ -52,10 +53,10 @@ export const Checkout = () => {
           }}
         >
           <CheckoutDetailsTitles />
-          <CheckoutDetails products={currentData()} />
+          <CheckoutDetails products={getPageData() as CartInfo[]} />
           <CheckoutPagination jumpToPage={jumpToPage} />
         </Box>
-        <PurchaseDetails products={currentData()} />
+        <PurchaseDetails products={getPageData() as CartInfo[]} />
       </Box>
     </Box>
   );

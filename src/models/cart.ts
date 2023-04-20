@@ -1,7 +1,7 @@
-import { ProductInfo } from "./products";
+import { Product } from "./products";
 
-export interface CartInfo{
-    item: ProductInfo;
-    amount: number;
-    size: string;
+export interface CartInfo {
+  item: Product;
+  amount: number;
+  size: string;
 }

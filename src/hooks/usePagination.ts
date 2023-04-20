@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Product } from "../models";
+import { CartInfo, Product } from "../models";
 
-export const usePagination = (data: Product[], itemsPerPage: number) => {
+export const usePagination = (data: unknown[], itemsPerPage: number) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const maxPage = Math.ceil(data.length / itemsPerPage);
 
@@ -20,7 +20,6 @@ export const usePagination = (data: Product[], itemsPerPage: number) => {
   };
 
   const jumpToPage = (page: number) => {
-    // const pageNumber = Math.max(1, page);
     setCurrentPage(page);
   };
 

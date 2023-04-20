@@ -42,7 +42,7 @@ function Inventory() {
       }}
     >
       <MenuList />
-      <ProductList products={getPageData()} />
+      <ProductList products={getPageData() as Product[]} />
       <PaginationComponent
         count={getCount(products, inventoryItemsPerPage)}
         page={currentPage}
