@@ -48,6 +48,7 @@ export const FeaturedProducts = () => {
             borderBottom: "2px solid rgba(148,148,148,.25)",
             textAlign: { xs: "center", sm: "left" },
           }}
+          id="offerts"
         >
           Featured Products
         </Typography>

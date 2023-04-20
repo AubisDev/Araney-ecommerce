@@ -2,6 +2,9 @@ import { Typography, Button, Box } from "@mui/material";
 import HeroSectionImage from "../../../../assets/HeroImage.webp";
 
 export const HeroSection = () => {
+  const handleShowOfferts = () => {
+    document.getElementById("offerts")?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <Box sx={{ width: "100vw", height: "70vh", display: "flex", mt: 15 }}>
       <Box
@@ -38,9 +41,15 @@ export const HeroSection = () => {
         >
           <Typography
             variant="h4"
-            component="h3"
+            component="h4"
             align="center"
-            sx={{ width: "80%", margin: "auto", pt: 6, fontWeight: "600" }}
+            sx={{
+              width: { xs: "70%", sm: "40%", md: "70%" },
+              margin: "auto",
+              pt: { xs: 12, md: 10, lg: 6 },
+              fontWeight: "600",
+              fontSize: { xs: "1.5rem", md: "1.75rem", lg: "2.235rem" },
+            }}
           >
             At Araney we have what you need to return to school and for your
             home
@@ -83,6 +92,7 @@ export const HeroSection = () => {
               margin: "auto",
               mt: 4,
             }}
+            onClick={handleShowOfferts}
           >
             Ver los productos en oferta
           </Button>
