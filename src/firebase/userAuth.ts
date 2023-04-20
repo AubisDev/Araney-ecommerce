@@ -18,6 +18,7 @@ import {
   userSignInWithEmailAndPassword,
 } from "../redux/states/user";
 import { firebaseAuth } from "./firebase";
+import { PublicRoutes } from "../models";
 
 interface AuthCheckerProps {
   dispatch: Dispatch;
@@ -59,7 +60,7 @@ export const isUserChecked = ({ dispatch, navigate }: AuthCheckerProps) => {
           token,
         })
       );
-      navigate("/home");
+      navigate(PublicRoutes.HOME);
     } else {
       dispatch(userLogout({}));
     }
@@ -77,7 +78,7 @@ export const googleSignIn = async ({ dispatch, navigate }: dispatchProps) => {
           token: GoogleAuthProvider.credentialFromResult(resp)?.accessToken,
         })
       );
-      navigate("/home");
+      navigate(PublicRoutes.HOME);
     })
     .catch((error) => {
       console.log(error);
@@ -109,7 +110,7 @@ export const handleUserRegistration = async ({
           token,
         })
       );
-      navigate("/home");
+      navigate(PublicRoutes.HOME);
     }
   );
 };
@@ -134,7 +135,7 @@ export const userSignIn = async ({
           token,
         })
       );
-      navigate("/home");
+      navigate(PublicRoutes.HOME);
     }
   );
 };

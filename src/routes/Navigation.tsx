@@ -13,7 +13,6 @@ const Login = lazy(() => import("../pages/Public/Login/Login"));
 const Inventory = lazy(() => import("../pages/Public/Inventory/Inventory"));
 const Register = lazy(() => import("../pages/Public/Register/Register"));
 const Checkout = lazy(() => import("../pages/Private/Checkout/Checkout"));
-// const Home = lazy(() => import("../pages/Public/Home/Home"));
 
 export const Navigation = () => {
   return (
