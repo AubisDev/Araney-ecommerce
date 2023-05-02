@@ -56,7 +56,7 @@ export const Checkout = () => {
           <CheckoutDetails products={getPageData() as CartInfo[]} />
           <CheckoutPagination jumpToPage={jumpToPage} />
         </Box>
-        <PurchaseDetails products={getPageData() as CartInfo[]} />
+        <PurchaseDetails />
       </Box>
     </Box>
   );

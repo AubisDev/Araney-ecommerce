@@ -5,14 +5,16 @@ import {
   getTotalPrice,
   NotImplementedAlert,
 } from "../utilities/generalPurpose";
+import { useSelector } from "react-redux";
+import { AppStore } from "../../../../redux/store";
 
-interface PurchaseDetailsProps {
-  products: CartInfo[];
-}
 
-const PurchaseDetails = ({ products }: PurchaseDetailsProps) => {
+
+const PurchaseDetails = () => {
   const handleCheckout = () => NotImplementedAlert();
+  const { cart } = useSelector((store:AppStore) => store);
 
+  
   return (
     <Box
       sx={{
@@ -58,7 +60,7 @@ const PurchaseDetails = ({ products }: PurchaseDetailsProps) => {
         fontWeight={600}
         py={1.5}
       >
-        {getTotalItems(products)}
+        {getTotalItems(cart)}
         <i className="fa-solid fa-cubes" style={{ paddingLeft: "6px" }}></i>
       </Typography>
 
@@ -78,7 +80,7 @@ const PurchaseDetails = ({ products }: PurchaseDetailsProps) => {
         fontWeight={600}
         py={1.5}
       >
-        {products.length}
+        {cart.length}
         <i
           className="fa-sharp fa-solid fa-cube"
           style={{ paddingLeft: "6px" }}
@@ -102,7 +104,7 @@ const PurchaseDetails = ({ products }: PurchaseDetailsProps) => {
         py={1.5}
         letterSpacing={2}
       >
-        ${getTotalPrice(products)}
+        ${getTotalPrice(cart)}
       </Typography>
 
       <Button

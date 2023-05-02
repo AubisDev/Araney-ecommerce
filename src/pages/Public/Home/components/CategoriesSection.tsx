@@ -1,7 +1,7 @@
 import { Typography, Box, Grid, Button } from "@mui/material";
 import { categoriesData, ICategoriesData } from "../data";
 import { PublicRoutes } from "../../../../models";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CategoriesSection = () => {
   const navigate = useNavigate();
@@ -64,8 +64,8 @@ export const CategoriesSection = () => {
                     alt={categoryName}
                     sx={{
                       objectFit: "cover",
-                      width: { xs: "600px", md: "100%" },
-                      height: { xs: "300px", md: "500px" },
+                      width: { xs: "600px", md: "auto" },
+                      height: { xs: "300px", md: "600px" },
                       position: "relative",
                     }}
                     src={image}

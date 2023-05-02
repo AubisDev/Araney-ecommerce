@@ -35,6 +35,8 @@ export const PaginationComponent = ({
         shape="rounded"
         variant="outlined"
         page={page}
+        hideNextButton={true}
+        hidePrevButton={true}
         onChange={(evt: React.ChangeEvent<any>) =>
           handlePageJump(evt, Number(evt.target.innerText))
         }
